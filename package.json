@@ -1,0 +1,27 @@
+{
+  "name": "marvel-list-api",
+  "version": "1.0.0",
+  "description": "marvel-list-api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/th3mon/marvel-list-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/th3mon/marvel-list-api/issues"
+  },
+  "homepage": "https://github.com/th3mon/marvel-list-api#readme",
+  "devDependencies": {
+    "nodemon": "^1.17.4"
+  },
+  "dependencies": {
+    "cors": "^2.8.4",
+    "json-server": "^0.12.2"
+  }
+}
