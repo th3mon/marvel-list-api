@@ -4,7 +4,9 @@
   "description": "marvel-list-api",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --inspect index.js"
+    "start": "nodemon index.js",
+    "debug": "nodemon --inspect index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
