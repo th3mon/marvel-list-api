@@ -23,8 +23,11 @@
     "nodemon": "^1.17.4"
   },
   "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
     "cors": "^2.8.4",
     "json-server": "^0.12.2",
-    "restify": "^7.2.1"
+    "restify": "^7.2.1",
+    "restify-clients": "^2.5.0",
+    "restify-errors": "^6.1.1"
   }
 }
