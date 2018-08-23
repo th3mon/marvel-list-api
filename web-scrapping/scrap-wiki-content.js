@@ -54,9 +54,11 @@ function parseMovieData(id, row, headers) {
 }
 
 function parseCellData(cell) {
-  const $ = cheerio.load(cell);
+  const wikiReferencesPattern = /\[\d+\]/;
 
-  return $(cell).text();
+  return cheerio.load(cell)
+    .text()
+    .replace(wikiReferencesPattern, '');
 }
 
 function parseHeaders(table) {
