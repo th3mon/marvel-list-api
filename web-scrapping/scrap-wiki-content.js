@@ -1,7 +1,7 @@
 const clients = require('restify-clients');
 const cheerio = require('cheerio');
 const fs = require('fs');
-const _ = require('lodash');
+const lodash = require('lodash');
 
 const featureFilmsSectionId = 'mwAac';
 const wikiApiUrl = `https://en.wikipedia.org/api/rest_v1/page/html/Marvel_Cinematic_Universe?sections=${featureFilmsSectionId}`;
@@ -12,35 +12,43 @@ function run() {
     const html = obj[featureFilmsSectionId];
     const $ = cheerio.load(html);
     const table = $('.wikitable');
-    const headers = scrapHeaders(table, $);
-
+    const headers = parseHeaders(table);
     const movies = [];
 
     table
       .find('tr')
       .filter((_, row) => !isPhaseRow($(row).text()))
-      .filter((_, row) => !isHeadersRow($(row).find('th').length))
-      .map((movieId, row) => movies.push(parseMovieData(movieId, $(row), headers)));
+      .filter((_, row) => !isEmpty(row))
+      .each((id, row) => movies.push(parseMovieData(id, $(row), headers)));
 
-    writeToFileHtml(table.html());
+    writeToFileHtml(
+      cheerio
+        .load(html)('.wikitable')
+        .html()
+    );
+
     writeToFile(JSON.stringify({ movies }, null, 2));
   });
 }
 
 const isPhaseRow = rowText => rowText.includes('Phase');
-const isHeadersRow = headerColumnLength => headerColumnLength > 1;
+const isEmpty = row =>
+  Boolean(
+    !cheerio
+      .load(row)
+      .text()
+      .trim()
+  );
 
-function parseMovieData(movieId, row, headers) {
-  const movie = { movieId };
+function parseMovieData(id, row, headers) {
+  const movie = { id };
 
-  row
-    .children()
-    .map((index, cell) => {
-      const header = headers[index];
-      const data = parseCellData(cell)
+  row.children().each((index, cell) => {
+    const header = headers[index];
+    const data = parseCellData(cell);
 
-      movie[header] = data;
-    });
+    movie[header] = data;
+  });
 
   return movie;
 }
@@ -51,15 +59,20 @@ function parseCellData(cell) {
   return $(cell).text();
 }
 
-function scrapHeaders(table, $) {
+function parseHeaders(table) {
   const headers = [];
 
-  table.find('tr:first-child th').each((i, el) => {
-    const headerContent = $(el)
-      .text()
-      .replace(/\(s\)/, '');
+  table.find('tr:first-child th').each((_, headerCell) => {
+    const headerContent = cheerio.load(headerCell).text();
 
-    headers.push(_.kebabCase(headerContent));
+    headers.push(
+      lodash
+        .chain(headerContent)
+        .replace(/\(s\)/, '')
+        .replace(/U\.S\./, '')
+        .trim()
+        .camelCase()
+    );
   });
 
   return headers;
