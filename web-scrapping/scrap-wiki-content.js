@@ -3,12 +3,24 @@ const cheerio = require('cheerio');
 const fs = require('fs');
 const lodash = require('lodash');
 
+const wikiApiUrl = `https://en.wikipedia.org`;
+const pageHtmlEndpointPath = '/api/rest_v1/page/html';
 const featureFilmsSectionId = 'mwAac';
-const wikiApiUrl = `https://en.wikipedia.org/api/rest_v1/page/html/Marvel_Cinematic_Universe?sections=${featureFilmsSectionId}`;
 const client = clients.createJsonClient(wikiApiUrl);
 
 function run() {
-  client.get('', (err, req, res, obj) => {
+  client.get({
+    path: `${pageHtmlEndpointPath}/Marvel_Cinematic_Universe`,
+    query: {
+      sections: featureFilmsSectionId
+    }
+  }, (err, req, res, obj) => {
+    if (err) {
+      console.log(err);
+
+      return err;
+    }
+
     const html = obj[featureFilmsSectionId];
     const $ = cheerio.load(html);
     const table = $('.wikitable');
