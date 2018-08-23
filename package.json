@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon index.js",
     "debug": "nodemon --inspect index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,7 @@
   },
   "homepage": "https://github.com/th3mon/marvel-list-api#readme",
   "devDependencies": {
+    "jest": "^23.5.0",
     "nodemon": "^1.17.4"
   },
   "dependencies": {
