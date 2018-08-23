@@ -7,9 +7,6 @@ const featureFilmsSectionId = 'mwAac';
 const wikiApiUrl = `https://en.wikipedia.org/api/rest_v1/page/html/Marvel_Cinematic_Universe?sections=${featureFilmsSectionId}`;
 const client = clients.createJsonClient(wikiApiUrl);
 
-const isPhaseRow = rowText => rowText.includes('Phase');
-const isHeadersRow = headerColumnLength => headerColumnLength > 1;
-
 function run() {
   client.get('', (err, req, res, obj) => {
     const html = obj[featureFilmsSectionId];
@@ -23,28 +20,35 @@ function run() {
       .find('tr')
       .filter((_, row) => !isPhaseRow($(row).text()))
       .filter((_, row) => !isHeadersRow($(row).find('th').length))
-      .map((id, row) =>
-        $(row).map((_, element) => {
-          const movie = {
-            id
-          };
-
-          $(element)
-            .children()
-            .map((index, movieData) => {
-              movie[headers[index]] = $(movieData).text();
-            });
-          movies.push(movie);
-        })
-      );
-
-    const moviesDto = {
-      movies
-    };
+      .map((movieId, row) => movies.push(parseMovieData(movieId, $(row), headers)));
 
     writeToFileHtml(table.html());
-    writeToFile(JSON.stringify(moviesDto, null, 2));
+    writeToFile(JSON.stringify({ movies }, null, 2));
   });
+}
+
+const isPhaseRow = rowText => rowText.includes('Phase');
+const isHeadersRow = headerColumnLength => headerColumnLength > 1;
+
+function parseMovieData(movieId, row, headers) {
+  const movie = { movieId };
+
+  row
+    .children()
+    .map((index, cell) => {
+      const header = headers[index];
+      const data = parseCellData(cell)
+
+      movie[header] = data;
+    });
+
+  return movie;
+}
+
+function parseCellData(cell) {
+  const $ = cheerio.load(cell);
+
+  return $(cell).text();
 }
 
 function scrapHeaders(table, $) {
@@ -75,6 +79,6 @@ function writeToFile(content) {
   writeStream.write(content);
 }
 
-// run();
+run();
 
 module.exports = { run, isPhaseRow };
