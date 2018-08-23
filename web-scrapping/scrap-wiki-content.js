@@ -54,11 +54,14 @@ function parseMovieData(id, row, headers) {
 }
 
 function parseCellData(cell) {
+  const data = cheerio.load(cell).text();
+  const isDate = s => datePattern.test(s);
+  const datePattern = /\d{4}-\d{2}-\d{2}/;
   const wikiReferencesPattern = /\[\d+\]/;
 
-  return cheerio.load(cell)
-    .text()
-    .replace(wikiReferencesPattern, '');
+  return isDate(data)
+    ? Date(datePattern.exec(data))
+    : data.replace(wikiReferencesPattern, '');
 }
 
 function parseHeaders(table) {
