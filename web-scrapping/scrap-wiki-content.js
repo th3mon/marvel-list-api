@@ -8,6 +8,7 @@ const wikiApiUrl = `https://en.wikipedia.org/api/rest_v1/page/html/Marvel_Cinema
 const client = clients.createJsonClient(wikiApiUrl);
 
 const isPhaseRow = rowText => rowText.includes('Phase');
+const isHeadersRow = headerColumnLength => headerColumnLength > 1;
 
 function run() {
   client.get('', (err, req, res, obj) => {
@@ -21,7 +22,7 @@ function run() {
     table
       .find('tr')
       .filter((_, row) => !isPhaseRow($(row).text()))
-      .filter((index, row) => $(row).find('th').length < 2)
+      .filter((_, row) => !isHeadersRow($(row).find('th').length))
       .map((id, row) =>
         $(row).map((_, element) => {
           const movie = {
