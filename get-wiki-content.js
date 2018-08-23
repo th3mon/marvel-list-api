@@ -13,16 +13,42 @@ client.get('', (err, req, res, obj) => {
   const table = $('.wikitable');
   const headers = scrapHeaders(table, $);
 
+  const movies = [];
 
-  console.log(headers);
-  writeToFile(table.html());
+  table
+    .find('tr')
+    .filter((index, row) => $(row).children().length > 1)
+    .filter((index, row) => $(row).find('th').length < 2)
+    .map((id, row) =>
+      $(row).map((_, element) => {
+        const movie = {
+          id
+        };
+
+        $(element)
+          .children()
+          .map((index, movieData) => {
+            movie[headers[index]] = $(movieData).text();
+          });
+        movies.push(movie);
+      })
+    );
+
+  const moviesDto = {
+    movies
+  };
+
+  writeToFileHtml(table.html());
+  writeToFile(JSON.stringify(moviesDto, null, 2));
 });
 
 function scrapHeaders(table, $) {
   const headers = [];
 
   table.find('tr:first-child th').each((i, el) => {
-    const headerContent = $(el).text().replace(/\(s\)/, '');
+    const headerContent = $(el)
+      .text()
+      .replace(/\(s\)/, '');
 
     headers.push(_.kebabCase(headerContent));
   });
@@ -30,10 +56,16 @@ function scrapHeaders(table, $) {
   return headers;
 }
 
-function writeToFile(content) {
+function writeToFileHtml(content) {
   const writeStream = fs.createWriteStream('data-from-wiki.html');
 
-  writeStream.write('<table>')
+  writeStream.write('<table>');
   writeStream.write(content);
-  writeStream.write('</table>')
+  writeStream.write('</table>');
+}
+
+function writeToFile(content) {
+  const writeStream = fs.createWriteStream('data-from-wiki.json');
+
+  writeStream.write(content);
 }
