@@ -50,6 +50,10 @@ function parseMovieData(id, row, headers) {
     movie[header] = data;
   });
 
+  if (!movie.status) {
+    movie.status = 'Released';
+  }
+
   return movie;
 }
 
