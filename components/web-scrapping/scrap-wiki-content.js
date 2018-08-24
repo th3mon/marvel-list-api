@@ -1,6 +1,5 @@
 const clients = require('restify-clients');
 const cheerio = require('cheerio');
-const fs = require('fs');
 const moment = require('moment');
 const parseHeaderCells = require('./parse-header-cells');
 const isPhaseRow = require('./is-phase-row');
@@ -12,14 +11,6 @@ const pageHtmlEndpointPath = '/api/rest_v1/page/html';
 const featureFilmsSectionId = 'mwAac';
 const client = clients.createJsonClient(wikiApiUrl);
 const stringClient = clients.createStringClient(wikiApiUrl);
-
-function writeToFileHtml(content) {
-  const writeStream = fs.createWriteStream('data-from-wiki.html');
-
-  writeStream.write('<table>');
-  writeStream.write(content);
-  writeStream.write('</table>');
-}
 
 function writeToFile(content) {
   const wikiDataWriter = createJsonFileWriter('data-from-wiki');
@@ -135,12 +126,6 @@ function scrapMoviesData() {
         .filter((_, row) => !isPhaseRow($(row).text()))
         .filter((_, row) => !isEmptyRow(row))
         .each((id, row) => movies.push(parseMovieData(id, $(row), headers)));
-
-      writeToFileHtml(
-        cheerio
-          .load(html)('.wikitable')
-          .html()
-      );
 
       resolve(movies);
     }
