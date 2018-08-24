@@ -65,29 +65,30 @@ function parseMovieUrl(index, cell) {
   const $anchor = cheerio.load(cell)('a');
   const isMovieTitleIndex = () => index === 0;
 
-  return isMovieTitleIndex()
-    ? $anchor.attr('href').replace('./', '/')
-    : '';
+  return isMovieTitleIndex() ? $anchor.attr('href').replace('./', '/') : '';
 }
 
-function scrapMovieImage(url) {
+function scrapMovieImageUrl(url) {
   return new Promise((resolve, reject) => {
     if (url) {
-      stringClient.get({
-        path: `${pageHtmlEndpointPath}${url}`
-      }, (err, req, res, obj) => {
-        if (err) {
-          console.error(err);
+      stringClient.get(
+        {
+          path: `${pageHtmlEndpointPath}${url}`
+        },
+        (err, req, res, obj) => {
+          if (err) {
+            console.error(err);
 
-          reject(err);
+            reject(err);
+          }
+
+          const $ = cheerio.load(obj);
+          const image = $('img[src*="poster"]');
+          const src = image.attr('src');
+
+          resolve(src);
         }
-
-        const $ = cheerio.load(obj);
-        const image = $('img[src*="poster"]');
-        const src = image.attr('src');
-
-        resolve(src);
-      });
+      );
     } else {
       resolve('');
     }
@@ -95,79 +96,101 @@ function scrapMovieImage(url) {
 }
 
 function parseMovieData(id, row, headers) {
-  return new Promise((resolve) => {
-    const movie = { id };
+  const movie = { id };
 
-    row.children().each((index, cell) => {
-      const header = headers[index];
-      const data = parseCellData(cell);
-      const movieUrl = parseMovieUrl(index, cell);
+  row.children().each((index, cell) => {
+    const header = headers[index];
+    const data = parseCellData(cell);
+    const movieUrl = parseMovieUrl(index, cell);
 
-      if (movieUrl) {
-        movie.url = movieUrl;
-      }
-
-      movie[header] = data;
-    });
-
-    if (!movie.status) {
-      movie.status = 'Released';
+    if (movieUrl) {
+      movie.url = movieUrl;
     }
 
-    scrapMovieImage(movie.url)
-      .then((imageUrl) => {
-        movie.imageUrl = imageUrl;
-
-        return movie;
-      })
-      .then(m => resolve(m));
+    movie[header] = data;
   });
+
+  if (!movie.status) {
+    movie.status = 'Released';
+  }
+
+  return movie;
 }
 
 function scrapMoviesData() {
-  client.get({
-    path: `${pageHtmlEndpointPath}/Marvel_Cinematic_Universe`,
-    query: {
-      sections: featureFilmsSectionId
-    }
-  }, (err, req, res, obj) => {
-    if (err) {
-      console.error(err);
-    }
+  return new Promise((resolve, reject) => {
+    client.get(
+      {
+        path: `${pageHtmlEndpointPath}/Marvel_Cinematic_Universe`,
+        query: {
+          sections: featureFilmsSectionId
+        }
+      },
+      (err, req, res, obj) => {
+        if (err) {
+          reject(err);
+        }
 
-    const html = obj[featureFilmsSectionId];
-    const $ = cheerio.load(html);
-    const table = $('.wikitable');
-    const headers = parseHeaders(table);
-    const movies = [];
-    const writeStream = fs.createWriteStream('data-from-wiki.json');
+        const html = obj[featureFilmsSectionId];
+        const $ = cheerio.load(html);
+        const table = $('.wikitable');
+        const headers = parseHeaders(table);
+        const movies = [];
 
-    table
-      .find('tr')
-      .filter((_, row) => !isPhaseRow($(row).text()))
-      .filter((_, row) => !isEmpty(row))
-      // .each((id, row) => movies.push(parseMovieData(id, $(row), headers)));
-      .each((id, row) => parseMovieData(id, $(row), headers).then((md) => {
-        // movies.push(md);
+        table
+          .find('tr')
+          .filter((_, row) => !isPhaseRow($(row).text()))
+          .filter((_, row) => !isEmpty(row))
+          .each((id, row) => movies.push(parseMovieData(id, $(row), headers)));
 
+        writeToFileHtml(
+          cheerio
+            .load(html)('.wikitable')
+            .html()
+        );
 
-        writeStream.write(JSON.stringify(md, null, 2) + ',');
-
-
-      }));
-
-    writeToFileHtml(
-      cheerio
-        .load(html)('.wikitable')
-        .html()
+        resolve(movies);
+      }
     );
-
-    // writeToFile(JSON.stringify({ movies }, null, 2));
   });
 }
 
 function run() {
-  return scrapMoviesData();
+  let moviesLength = -1;
+  let counter = 0;
+  const scrappedData = [];
+  let progress = 0;
+
+  return new Promise((resolve) => {
+    scrapMoviesData().then((movies) => {
+      moviesLength = movies.length;
+
+      movies.forEach((movie) => {
+        scrapMovieImageUrl(movie.url)
+          .then((imageUrl) => {
+            scrappedData[movie.id] = Object.assign(movie, { imageUrl });
+
+            counter += 1;
+
+            progress = counter === 0
+              ? counter
+              : parseInt(counter / moviesLength * 100, 10);
+
+            console.log(`${progress}%`);
+          });
+      });
+    });
+
+    const interval = setInterval(() => {
+      if (moviesLength === counter) {
+        clearInterval(interval);
+
+        writeToFile(JSON.stringify({ movies: scrappedData }, null, 2));
+
+        resolve(console.log('done!'));
+      }
+    }, 100);
+  });
 }
 
 run();

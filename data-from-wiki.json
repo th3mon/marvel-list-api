@@ -4,55 +4,60 @@
       "id": 0,
       "url": "/Iron_Man_(2008_film)",
       "film": "Iron Man",
-      "releaseDate": "Fri Aug 24 2018 03:00:49 GMT+0200 (CEST)",
+      "releaseDate": "Fri Aug 24 2018 05:42:43 GMT+0200 (CEST)",
       "director": "Jon Favreau",
       "screenwriter": "Mark Fergus & Hawk Ostby and Art Marcum & Matt Holloway[136]",
       "producer": "Avi Arad and Kevin Feige",
-      "status": "Released"
+      "status": "Released",
+      "imageUrl": "//upload.wikimedia.org/wikipedia/en/7/70/Ironmanposter.JPG"
     },
     {
       "id": 1,
       "url": "/The_Incredible_Hulk_(film)",
       "film": "The Incredible Hulk",
-      "releaseDate": "Fri Aug 24 2018 03:00:49 GMT+0200 (CEST)",
+      "releaseDate": "Fri Aug 24 2018 05:42:43 GMT+0200 (CEST)",
       "director": "Louis Leterrier",
       "screenwriter": "Zak Penn",
       "producer": "Avi Arad, Gale Anne Hurd  and Kevin Feige",
-      "status": "Released"
+      "status": "Released",
+      "imageUrl": "//upload.wikimedia.org/wikipedia/en/8/88/The_Incredible_Hulk_poster.jpg"
     },
     {
       "id": 2,
       "url": "/Iron_Man_2",
       "film": "Iron Man 2",
-      "releaseDate": "Fri Aug 24 2018 03:00:49 GMT+0200 (CEST)",
+      "releaseDate": "Fri Aug 24 2018 05:42:43 GMT+0200 (CEST)",
       "director": "Jon Favreau",
       "screenwriter": "Justin Theroux",
       "producer": "Kevin Feige",
-      "status": "Released"
+      "status": "Released",
+      "imageUrl": "//upload.wikimedia.org/wikipedia/en/e/ed/Iron_Man_2_poster.jpg"
     },
     {
       "id": 3,
       "url": "/Thor_(film)",
       "film": "Thor",
-      "releaseDate": "Fri Aug 24 2018 03:00:49 GMT+0200 (CEST)",
+      "releaseDate": "Fri Aug 24 2018 05:42:43 GMT+0200 (CEST)",
       "director": "Kenneth Branagh",
       "screenwriter": "Ashley Edward Miller & Zack Stentz and Don Payne",
-      "status": "Released"
+      "status": "Released",
+      "imageUrl": "//upload.wikimedia.org/wikipedia/en/f/fc/Thor_poster.jpg"
     },
     {
       "id": 4,
       "url": "/Captain_America:_The_First_Avenger",
       "film": "Captain America: The First Avenger",
-      "releaseDate": "Fri Aug 24 2018 03:00:49 GMT+0200 (CEST)",
+      "releaseDate": "Fri Aug 24 2018 05:42:43 GMT+0200 (CEST)",
       "director": "Joe Johnston",
       "screenwriter": "Christopher Markus & Stephen McFeely",
-      "status": "Released"
+      "status": "Released",
+      "imageUrl": "//upload.wikimedia.org/wikipedia/en/3/37/Captain_America_The_First_Avenger_poster.jpg"
     },
     {
       "id": 5,
       "url": "/The_Avengers_(2012_film)",
       "film": "Marvel's The Avengers",
-      "releaseDate": "Fri Aug 24 2018 03:00:49 GMT+0200 (CEST)",
+      "releaseDate": "Fri Aug 24 2018 05:42:43 GMT+0200 (CEST)",
       "director": "Joss Whedon",
       "status": "Released"
     },
@@ -60,26 +65,28 @@
       "id": 6,
       "url": "/Iron_Man_3",
       "film": "Iron Man 3",
-      "releaseDate": "Fri Aug 24 2018 03:00:49 GMT+0200 (CEST)",
+      "releaseDate": "Fri Aug 24 2018 05:42:43 GMT+0200 (CEST)",
       "director": "Shane Black",
       "screenwriter": "Drew Pearce and Shane Black[147]",
       "producer": "Kevin Feige",
-      "status": "Released"
+      "status": "Released",
+      "imageUrl": "//upload.wikimedia.org/wikipedia/en/d/d5/Iron_Man_3_theatrical_poster.jpg"
     },
     {
       "id": 7,
       "url": "/Thor:_The_Dark_World",
       "film": "Thor: The Dark World",
-      "releaseDate": "Fri Aug 24 2018 03:00:49 GMT+0200 (CEST)",
+      "releaseDate": "Fri Aug 24 2018 05:42:43 GMT+0200 (CEST)",
       "director": "Alan Taylor",
       "screenwriter": "Christopher L. Yost and Christopher Markus & Stephen McFeely",
-      "status": "Released"
+      "status": "Released",
+      "imageUrl": "//upload.wikimedia.org/wikipedia/en/7/7e/Thor_-_The_Dark_World_poster.jpg"
     },
     {
       "id": 8,
       "url": "/Captain_America:_The_Winter_Soldier",
       "film": "Captain America: The Winter Soldier",
-      "releaseDate": "Fri Aug 24 2018 03:00:49 GMT+0200 (CEST)",
+      "releaseDate": "Fri Aug 24 2018 05:42:43 GMT+0200 (CEST)",
       "director": "Anthony and Joe Russo",
       "screenwriter": "Christopher Markus & Stephen McFeely",
       "status": "Released"
@@ -88,18 +95,20 @@
       "id": 9,
       "url": "/Guardians_of_the_Galaxy_(film)",
       "film": "Guardians of the Galaxy",
-      "releaseDate": "Fri Aug 24 2018 03:00:49 GMT+0200 (CEST)",
+      "releaseDate": "Fri Aug 24 2018 05:42:43 GMT+0200 (CEST)",
       "director": "James Gunn",
       "screenwriter": "James Gunn and Nicole Perlman",
-      "status": "Released"
+      "status": "Released",
+      "imageUrl": "//upload.wikimedia.org/wikipedia/en/b/b5/Guardians_of_the_Galaxy_poster.jpg"
     },
     {
       "id": 10,
       "url": "/Avengers:_Age_of_Ultron",
       "film": "Avengers: Age of Ultron",
-      "releaseDate": "Fri Aug 24 2018 03:00:49 GMT+0200 (CEST)",
+      "releaseDate": "Fri Aug 24 2018 05:42:43 GMT+0200 (CEST)",
       "director": "Joss Whedon",
-      "status": "Released"
+      "status": "Released",
+      "imageUrl": "//upload.wikimedia.org/wikipedia/en/f/ff/Avengers_Age_of_Ultron_poster.jpg"
     },
     {
       "id": 11,
@@ -108,88 +117,97 @@
       "releaseDate": "July 17, 2015",
       "director": "Peyton Reed",
       "screenwriter": "Edgar Wright & Joe Cornish and Adam McKay & Paul Rudd",
-      "status": "Released"
+      "status": "Released",
+      "imageUrl": "//upload.wikimedia.org/wikipedia/en/7/75/Ant-Man_poster.jpg"
     },
     {
       "id": 12,
       "url": "/Captain_America:_Civil_War",
       "film": "Captain America: Civil War",
-      "releaseDate": "Fri Aug 24 2018 03:00:49 GMT+0200 (CEST)",
+      "releaseDate": "Fri Aug 24 2018 05:42:43 GMT+0200 (CEST)",
       "director": "Anthony and Joe Russo",
       "screenwriter": "Christopher Markus & Stephen McFeely",
       "producer": "Kevin Feige",
-      "status": "Released"
+      "status": "Released",
+      "imageUrl": "//upload.wikimedia.org/wikipedia/en/5/53/Captain_America_Civil_War_poster.jpg"
     },
     {
       "id": 13,
       "url": "/Doctor_Strange_(2016_film)",
       "film": "Doctor Strange",
-      "releaseDate": "Fri Aug 24 2018 03:00:49 GMT+0200 (CEST)",
+      "releaseDate": "Fri Aug 24 2018 05:42:43 GMT+0200 (CEST)",
       "director": "Scott Derrickson",
       "screenwriter": "Jon Spaihts and Scott Derrickson & C. Robert Cargill",
-      "status": "Released"
+      "status": "Released",
+      "imageUrl": "//upload.wikimedia.org/wikipedia/en/c/c7/Doctor_Strange_poster.jpg"
     },
     {
       "id": 14,
       "url": "/Guardians_of_the_Galaxy_Vol._2",
       "film": "Guardians of the Galaxy Vol. 2",
-      "releaseDate": "Fri Aug 24 2018 03:00:49 GMT+0200 (CEST)",
+      "releaseDate": "Fri Aug 24 2018 05:42:43 GMT+0200 (CEST)",
       "director": "James Gunn",
-      "status": "Released"
+      "status": "Released",
+      "imageUrl": "//upload.wikimedia.org/wikipedia/en/thumb/a/ab/Guardians_of_the_Galaxy_Vol_2_poster.jpg/220px-Guardians_of_the_Galaxy_Vol_2_poster.jpg"
     },
     {
       "id": 15,
       "url": "/Spider-Man:_Homecoming",
       "film": "Spider-Man: Homecoming",
-      "releaseDate": "Fri Aug 24 2018 03:00:49 GMT+0200 (CEST)",
+      "releaseDate": "Fri Aug 24 2018 05:42:43 GMT+0200 (CEST)",
       "director": "Jon Watts",
       "screenwriter": "Jonathan Goldstein & John Francis Daley andJon Watts & Christopher Ford andChris McKenna & Erik Sommers",
       "producer": "Kevin Feige and Amy Pascal",
-      "status": "Released"
+      "status": "Released",
+      "imageUrl": "//upload.wikimedia.org/wikipedia/en/f/f9/Spider-Man_Homecoming_poster.jpg"
     },
     {
       "id": 16,
       "url": "/Thor:_Ragnarok",
       "film": "Thor: Ragnarok",
-      "releaseDate": "Fri Aug 24 2018 03:00:49 GMT+0200 (CEST)",
+      "releaseDate": "Fri Aug 24 2018 05:42:43 GMT+0200 (CEST)",
       "director": "Taika Waititi",
       "screenwriter": "Eric Pearson and Craig Kyle & Christopher L. Yost[164]",
       "producer": "Kevin Feige",
-      "status": "Released"
+      "status": "Released",
+      "imageUrl": "//upload.wikimedia.org/wikipedia/en/7/7d/Thor_Ragnarok_poster.jpg"
     },
     {
       "id": 17,
       "url": "/Black_Panther_(film)",
       "film": "Black Panther",
-      "releaseDate": "Fri Aug 24 2018 03:00:49 GMT+0200 (CEST)",
+      "releaseDate": "Fri Aug 24 2018 05:42:43 GMT+0200 (CEST)",
       "director": "Ryan Coogler",
       "screenwriter": "Ryan Coogler & Joe Robert Cole[167]",
-      "status": "Released"
+      "status": "Released",
+      "imageUrl": "//upload.wikimedia.org/wikipedia/en/0/0c/Black_Panther_film_poster.jpg"
     },
     {
       "id": 18,
       "url": "/Avengers:_Infinity_War",
       "film": "Avengers: Infinity War",
-      "releaseDate": "Fri Aug 24 2018 03:00:49 GMT+0200 (CEST)",
+      "releaseDate": "Fri Aug 24 2018 05:42:43 GMT+0200 (CEST)",
       "director": "Anthony and Joe Russo",
       "screenwriter": "Christopher Markus & Stephen McFeely",
-      "status": "Released"
+      "status": "Released",
+      "imageUrl": "//upload.wikimedia.org/wikipedia/en/4/4d/Avengers_Infinity_War_poster.jpg"
     },
     {
       "id": 19,
       "url": "/Ant-Man_and_the_Wasp",
       "film": "Ant-Man and the Wasp",
-      "releaseDate": "Fri Aug 24 2018 03:00:49 GMT+0200 (CEST)",
+      "releaseDate": "Fri Aug 24 2018 05:42:43 GMT+0200 (CEST)",
       "director": "Peyton Reed",
       "screenwriter": "Chris McKenna & Erik Sommers andPaul Rudd & Andrew Barrer & Gabriel Ferrari",
       "producer": "Kevin Feige and Stephen Broussard",
-      "status": "Released"
+      "status": "Released",
+      "imageUrl": "//upload.wikimedia.org/wikipedia/en/2/2c/Ant-Man_and_the_Wasp_poster.jpg"
     },
     {
       "id": 20,
       "url": "/Captain_Marvel_(film)",
       "film": "Captain Marvel",
-      "releaseDate": "Fri Aug 24 2018 03:00:49 GMT+0200 (CEST)",
+      "releaseDate": "Fri Aug 24 2018 05:42:43 GMT+0200 (CEST)",
       "director": "Anna Boden and Ryan Fleck",
       "screenwriter": "Meg LeFauve and Nicole Perlman andGeneva Robertson-Dworet andLiz Flahive & Carly Mensch andAnna Boden & Ryan Fleck",
       "producer": "Kevin Feige",
@@ -199,7 +217,7 @@
       "id": 21,
       "url": "/Untitled_Avengers_film",
       "film": "Untitled Avengers film",
-      "releaseDate": "Fri Aug 24 2018 03:00:49 GMT+0200 (CEST)",
+      "releaseDate": "Fri Aug 24 2018 05:42:43 GMT+0200 (CEST)",
       "director": "Anthony and Joe Russo",
       "screenwriter": "Christopher Markus & Stephen McFeely",
       "status": "Released"
@@ -208,7 +226,7 @@
       "id": 22,
       "url": "/Spider-Man:_Far_From_Home",
       "film": "Spider-Man: Far From Home",
-      "releaseDate": "Fri Aug 24 2018 03:00:49 GMT+0200 (CEST)",
+      "releaseDate": "Fri Aug 24 2018 05:42:43 GMT+0200 (CEST)",
       "director": "Jon Watts",
       "screenwriter": "Chris McKenna & Erik Sommers",
       "producer": "Kevin Feige and Amy Pascal",
