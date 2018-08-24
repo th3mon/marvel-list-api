@@ -3,6 +3,7 @@ const cheerio = require('cheerio');
 const fs = require('fs');
 const moment = require('moment');
 const parseHeaderCells = require('./parse-header-cells');
+const isPhaseRow = require('./is-phase-row');
 
 const wikiApiUrl = 'https://en.wikipedia.org';
 const pageHtmlEndpointPath = '/api/rest_v1/page/html';
@@ -10,7 +11,6 @@ const featureFilmsSectionId = 'mwAac';
 const client = clients.createJsonClient(wikiApiUrl);
 const stringClient = clients.createStringClient(wikiApiUrl);
 
-const isPhaseRow = rowText => rowText.includes('Phase');
 const isEmpty = row =>
   Boolean(
     !cheerio

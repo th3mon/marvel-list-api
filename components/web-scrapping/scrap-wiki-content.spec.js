@@ -1,15 +1,7 @@
-const scrapWikiContent = require('./scrap-wiki-content');
-
-const { isPhaseRow } = scrapWikiContent;
+const run = require('./scrap-wiki-content');
 
 describe('Scrap Wiki Content', () => {
-  describe('isPhaseRow', () => {
-    it('should be phase row', () => {
-      expect(isPhaseRow('Phase One')).toBe(true);
-    });
-
-    it('should NOT be phase row', () => {
-      expect(isPhaseRow('Some row data')).toBe(false);
-    });
+  it('should be defined', () => {
+    expect(run).toBeDefined();
   });
 });
