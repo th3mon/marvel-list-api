@@ -4,20 +4,13 @@ const fs = require('fs');
 const moment = require('moment');
 const parseHeaderCells = require('./parse-header-cells');
 const isPhaseRow = require('./is-phase-row');
+const isEmptyRow = require('./is-empty-row');
 
 const wikiApiUrl = 'https://en.wikipedia.org';
 const pageHtmlEndpointPath = '/api/rest_v1/page/html';
 const featureFilmsSectionId = 'mwAac';
 const client = clients.createJsonClient(wikiApiUrl);
 const stringClient = clients.createStringClient(wikiApiUrl);
-
-const isEmpty = row =>
-  Boolean(
-    !cheerio
-      .load(row)
-      .text()
-      .trim()
-  );
 
 function writeToFileHtml(content) {
   const writeStream = fs.createWriteStream('data-from-wiki.html');
@@ -139,7 +132,7 @@ function scrapMoviesData() {
       table
         .find('tr')
         .filter((_, row) => !isPhaseRow($(row).text()))
-        .filter((_, row) => !isEmpty(row))
+        .filter((_, row) => !isEmptyRow(row))
         .each((id, row) => movies.push(parseMovieData(id, $(row), headers)));
 
       writeToFileHtml(
