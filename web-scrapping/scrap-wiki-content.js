@@ -92,8 +92,9 @@ function scrapMovieImageUrl(url) {
           const $ = cheerio.load(obj);
           const image = $('img[src*="poster"]');
           const src = image.attr('src');
+          const protocol = 'https';
 
-          resolve(src);
+          resolve(`${protocol}:${src}`);
         }
       );
     } else {

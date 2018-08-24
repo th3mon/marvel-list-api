@@ -9,7 +9,7 @@
       "screenwriter": "Mark Fergus & Hawk Ostby and Art Marcum & Matt Holloway[136]",
       "producer": "Avi Arad and Kevin Feige",
       "status": "Released",
-      "imageUrl": "//upload.wikimedia.org/wikipedia/en/7/70/Ironmanposter.JPG"
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/7/70/Ironmanposter.JPG"
     },
     {
       "id": 1,
@@ -20,7 +20,7 @@
       "screenwriter": "Zak Penn",
       "producer": "Avi Arad, Gale Anne Hurd  and Kevin Feige",
       "status": "Released",
-      "imageUrl": "//upload.wikimedia.org/wikipedia/en/8/88/The_Incredible_Hulk_poster.jpg"
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/8/88/The_Incredible_Hulk_poster.jpg"
     },
     {
       "id": 2,
@@ -31,7 +31,7 @@
       "screenwriter": "Justin Theroux",
       "producer": "Kevin Feige",
       "status": "Released",
-      "imageUrl": "//upload.wikimedia.org/wikipedia/en/e/ed/Iron_Man_2_poster.jpg"
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/e/ed/Iron_Man_2_poster.jpg"
     },
     {
       "id": 3,
@@ -41,7 +41,7 @@
       "director": "Kenneth Branagh",
       "screenwriter": "Ashley Edward Miller & Zack Stentz and Don Payne",
       "status": "Released",
-      "imageUrl": "//upload.wikimedia.org/wikipedia/en/f/fc/Thor_poster.jpg"
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/f/fc/Thor_poster.jpg"
     },
     {
       "id": 4,
@@ -51,7 +51,7 @@
       "director": "Joe Johnston",
       "screenwriter": "Christopher Markus & Stephen McFeely",
       "status": "Released",
-      "imageUrl": "//upload.wikimedia.org/wikipedia/en/3/37/Captain_America_The_First_Avenger_poster.jpg"
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/3/37/Captain_America_The_First_Avenger_poster.jpg"
     },
     {
       "id": 5,
@@ -59,7 +59,8 @@
       "film": "Marvel's The Avengers",
       "releaseDate": "2012-05-04T00:00:00+02:00",
       "director": "Joss Whedon",
-      "status": "Released"
+      "status": "Released",
+      "imageUrl": "https:undefined"
     },
     {
       "id": 6,
@@ -70,7 +71,7 @@
       "screenwriter": "Drew Pearce and Shane Black[147]",
       "producer": "Kevin Feige",
       "status": "Released",
-      "imageUrl": "//upload.wikimedia.org/wikipedia/en/d/d5/Iron_Man_3_theatrical_poster.jpg"
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/d/d5/Iron_Man_3_theatrical_poster.jpg"
     },
     {
       "id": 7,
@@ -80,7 +81,7 @@
       "director": "Alan Taylor",
       "screenwriter": "Christopher L. Yost and Christopher Markus & Stephen McFeely",
       "status": "Released",
-      "imageUrl": "//upload.wikimedia.org/wikipedia/en/7/7e/Thor_-_The_Dark_World_poster.jpg"
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/7/7e/Thor_-_The_Dark_World_poster.jpg"
     },
     {
       "id": 8,
@@ -89,7 +90,8 @@
       "releaseDate": "2014-04-04T00:00:00+02:00",
       "director": "Anthony and Joe Russo",
       "screenwriter": "Christopher Markus & Stephen McFeely",
-      "status": "Released"
+      "status": "Released",
+      "imageUrl": "https:undefined"
     },
     {
       "id": 9,
@@ -99,7 +101,7 @@
       "director": "James Gunn",
       "screenwriter": "James Gunn and Nicole Perlman",
       "status": "Released",
-      "imageUrl": "//upload.wikimedia.org/wikipedia/en/b/b5/Guardians_of_the_Galaxy_poster.jpg"
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/b/b5/Guardians_of_the_Galaxy_poster.jpg"
     },
     {
       "id": 10,
@@ -108,7 +110,7 @@
       "releaseDate": "2015-05-01T00:00:00+02:00",
       "director": "Joss Whedon",
       "status": "Released",
-      "imageUrl": "//upload.wikimedia.org/wikipedia/en/f/ff/Avengers_Age_of_Ultron_poster.jpg"
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/f/ff/Avengers_Age_of_Ultron_poster.jpg"
     },
     {
       "id": 11,
@@ -118,7 +120,7 @@
       "director": "Peyton Reed",
       "screenwriter": "Edgar Wright & Joe Cornish and Adam McKay & Paul Rudd",
       "status": "Released",
-      "imageUrl": "//upload.wikimedia.org/wikipedia/en/7/75/Ant-Man_poster.jpg"
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/7/75/Ant-Man_poster.jpg"
     },
     {
       "id": 12,
@@ -129,7 +131,7 @@
       "screenwriter": "Christopher Markus & Stephen McFeely",
       "producer": "Kevin Feige",
       "status": "Released",
-      "imageUrl": "//upload.wikimedia.org/wikipedia/en/5/53/Captain_America_Civil_War_poster.jpg"
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/5/53/Captain_America_Civil_War_poster.jpg"
     },
     {
       "id": 13,
@@ -139,7 +141,7 @@
       "director": "Scott Derrickson",
       "screenwriter": "Jon Spaihts and Scott Derrickson & C. Robert Cargill",
       "status": "Released",
-      "imageUrl": "//upload.wikimedia.org/wikipedia/en/c/c7/Doctor_Strange_poster.jpg"
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/c/c7/Doctor_Strange_poster.jpg"
     },
     {
       "id": 14,
@@ -148,7 +150,7 @@
       "releaseDate": "2017-05-05T00:00:00+02:00",
       "director": "James Gunn",
       "status": "Released",
-      "imageUrl": "//upload.wikimedia.org/wikipedia/en/thumb/a/ab/Guardians_of_the_Galaxy_Vol_2_poster.jpg/220px-Guardians_of_the_Galaxy_Vol_2_poster.jpg"
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/a/ab/Guardians_of_the_Galaxy_Vol_2_poster.jpg/220px-Guardians_of_the_Galaxy_Vol_2_poster.jpg"
     },
     {
       "id": 15,
@@ -159,7 +161,7 @@
       "screenwriter": "Jonathan Goldstein & John Francis Daley andJon Watts & Christopher Ford andChris McKenna & Erik Sommers",
       "producer": "Kevin Feige and Amy Pascal",
       "status": "Released",
-      "imageUrl": "//upload.wikimedia.org/wikipedia/en/f/f9/Spider-Man_Homecoming_poster.jpg"
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/f/f9/Spider-Man_Homecoming_poster.jpg"
     },
     {
       "id": 16,
@@ -170,7 +172,7 @@
       "screenwriter": "Eric Pearson and Craig Kyle & Christopher L. Yost[164]",
       "producer": "Kevin Feige",
       "status": "Released",
-      "imageUrl": "//upload.wikimedia.org/wikipedia/en/7/7d/Thor_Ragnarok_poster.jpg"
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/7/7d/Thor_Ragnarok_poster.jpg"
     },
     {
       "id": 17,
@@ -180,7 +182,7 @@
       "director": "Ryan Coogler",
       "screenwriter": "Ryan Coogler & Joe Robert Cole[167]",
       "status": "Released",
-      "imageUrl": "//upload.wikimedia.org/wikipedia/en/0/0c/Black_Panther_film_poster.jpg"
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/0/0c/Black_Panther_film_poster.jpg"
     },
     {
       "id": 18,
@@ -190,7 +192,7 @@
       "director": "Anthony and Joe Russo",
       "screenwriter": "Christopher Markus & Stephen McFeely",
       "status": "Released",
-      "imageUrl": "//upload.wikimedia.org/wikipedia/en/4/4d/Avengers_Infinity_War_poster.jpg"
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/4/4d/Avengers_Infinity_War_poster.jpg"
     },
     {
       "id": 19,
@@ -201,7 +203,7 @@
       "screenwriter": "Chris McKenna & Erik Sommers andPaul Rudd & Andrew Barrer & Gabriel Ferrari",
       "producer": "Kevin Feige and Stephen Broussard",
       "status": "Released",
-      "imageUrl": "//upload.wikimedia.org/wikipedia/en/2/2c/Ant-Man_and_the_Wasp_poster.jpg"
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/2/2c/Ant-Man_and_the_Wasp_poster.jpg"
     },
     {
       "id": 20,
@@ -211,7 +213,8 @@
       "director": "Anna Boden and Ryan Fleck",
       "screenwriter": "Meg LeFauve and Nicole Perlman andGeneva Robertson-Dworet andLiz Flahive & Carly Mensch andAnna Boden & Ryan Fleck",
       "producer": "Kevin Feige",
-      "status": "Post-production"
+      "status": "Post-production",
+      "imageUrl": "https:undefined"
     },
     {
       "id": 21,
@@ -220,7 +223,8 @@
       "releaseDate": "2019-05-03T00:00:00+02:00",
       "director": "Anthony and Joe Russo",
       "screenwriter": "Christopher Markus & Stephen McFeely",
-      "status": "Released"
+      "status": "Released",
+      "imageUrl": "https:undefined"
     },
     {
       "id": 22,
@@ -230,7 +234,8 @@
       "director": "Jon Watts",
       "screenwriter": "Chris McKenna & Erik Sommers",
       "producer": "Kevin Feige and Amy Pascal",
-      "status": "Filming"
+      "status": "Filming",
+      "imageUrl": "https:undefined"
     },
     {
       "id": 23,
@@ -240,7 +245,8 @@
       "director": "TBA",
       "screenwriter": "James Gunn",
       "producer": "Kevin Feige",
-      "status": "In development"
+      "status": "In development",
+      "imageUrl": "https:undefined"
     }
   ]
 }
