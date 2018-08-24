@@ -1,33 +1,14 @@
 const clients = require('restify-clients');
 const cheerio = require('cheerio');
 const fs = require('fs');
-const lodash = require('lodash');
 const moment = require('moment');
+const parseHeaders = require('./parse-movie-header');
 
 const wikiApiUrl = 'https://en.wikipedia.org';
 const pageHtmlEndpointPath = '/api/rest_v1/page/html';
 const featureFilmsSectionId = 'mwAac';
 const client = clients.createJsonClient(wikiApiUrl);
 const stringClient = clients.createStringClient(wikiApiUrl);
-
-function parseHeaders(table) {
-  const headers = [];
-
-  table.find('tr:first-child th').each((_, headerCell) => {
-    const headerContent = cheerio.load(headerCell).text();
-
-    headers.push(
-      lodash
-        .chain(headerContent)
-        .replace(/\(s\)/, '')
-        .replace(/U\.S\./, '')
-        .trim()
-        .camelCase()
-    );
-  });
-
-  return headers;
-}
 
 const isPhaseRow = rowText => rowText.includes('Phase');
 const isEmpty = row =>
@@ -125,42 +106,52 @@ function parseMovieData(id, row, headers) {
   return movie;
 }
 
+const getHeaders = $headers => {
+  const headersTexts = [];
+
+  $headers.each((_, headerCell) =>
+    headersTexts.push(cheerio.load(headerCell).text()));
+
+  console.log(parseHeaders);
+  return parseHeaders(headersTexts);
+};
+
 function scrapMoviesData() {
-  return new Promise((resolve, reject) => {
-    client.get(
-      {
-        path: `${pageHtmlEndpointPath}/Marvel_Cinematic_Universe`,
-        query: {
-          sections: featureFilmsSectionId
-        }
-      },
-      (err, req, res, obj) => {
-        if (err) {
-          reject(err);
-        }
-
-        const html = obj[featureFilmsSectionId];
-        const $ = cheerio.load(html);
-        const table = $('.wikitable');
-        const headers = parseHeaders(table);
-        const movies = [];
-
-        table
-          .find('tr')
-          .filter((_, row) => !isPhaseRow($(row).text()))
-          .filter((_, row) => !isEmpty(row))
-          .each((id, row) => movies.push(parseMovieData(id, $(row), headers)));
-
-        writeToFileHtml(
-          cheerio
-            .load(html)('.wikitable')
-            .html()
-        );
-
-        resolve(movies);
+  return new Promise((resolve, reject) => client.get(
+    {
+      path: `${pageHtmlEndpointPath}/Marvel_Cinematic_Universe`,
+      query: {
+        sections: featureFilmsSectionId
       }
-    );
-  });
+    },
+    (err, req, res, obj) => {
+      if (err) {
+        reject(err);
+      }
+
+      const html = obj[featureFilmsSectionId];
+      const $ = cheerio.load(html);
+      const table = $('.wikitable');
+
+      const headers = getHeaders(table.find('tr:first-child th'));
+
+      const movies = [];
+
+      table
+        .find('tr')
+        .filter((_, row) => !isPhaseRow($(row).text()))
+        .filter((_, row) => !isEmpty(row))
+        .each((id, row) => movies.push(parseMovieData(id, $(row), headers)));
+
+      writeToFileHtml(
+        cheerio
+          .load(html)('.wikitable')
+          .html()
+      );
+
+      resolve(movies);
+    }
+  ));
 }
 
 function run() {
