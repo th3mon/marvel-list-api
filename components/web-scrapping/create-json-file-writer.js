@@ -1,7 +1,13 @@
 const fs = require('fs');
 
 function createJsonFileWriter(fileName) {
-  const writeStream = fs.createWriteStream(`${fileName}.json`);
+  const dir = 'cache';
+
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir);
+  }
+
+  const writeStream = fs.createWriteStream(`${dir}/${fileName}.json`);
 
   return content => {
     writeStream.write(content, 'utf8');
