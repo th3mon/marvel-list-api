@@ -7,6 +7,7 @@ const wikiApiUrl = 'https://en.wikipedia.org';
 const pageHtmlEndpointPath = '/api/rest_v1/page/html';
 const featureFilmsSectionId = 'mwAac';
 const client = clients.createJsonClient(wikiApiUrl);
+const stringClient = clients.createStringClient(wikiApiUrl);
 
 function parseHeaders(table) {
   const headers = [];
@@ -60,24 +61,70 @@ function parseCellData(cell) {
     : data.replace(wikiReferencesPattern, '');
 }
 
-function parseMovieData(id, row, headers) {
-  const movie = { id };
+function parseMovieUrl(index, cell) {
+  const $anchor = cheerio.load(cell)('a');
+  const isMovieTitleIndex = () => index === 0;
 
-  row.children().each((index, cell) => {
-    const header = headers[index];
-    const data = parseCellData(cell);
-
-    movie[header] = data;
-  });
-
-  if (!movie.status) {
-    movie.status = 'Released';
-  }
-
-  return movie;
+  return isMovieTitleIndex()
+    ? $anchor.attr('href').replace('./', '/')
+    : '';
 }
 
-function run() {
+function scrapMovieImage(url) {
+  return new Promise((resolve, reject) => {
+    if (url) {
+      stringClient.get({
+        path: `${pageHtmlEndpointPath}${url}`
+      }, (err, req, res, obj) => {
+        if (err) {
+          console.error(err);
+
+          reject(err);
+        }
+
+        const $ = cheerio.load(obj);
+        const image = $('img[src*="poster"]');
+        const src = image.attr('src');
+
+        resolve(src);
+      });
+    } else {
+      resolve('');
+    }
+  });
+}
+
+function parseMovieData(id, row, headers) {
+  return new Promise((resolve) => {
+    const movie = { id };
+
+    row.children().each((index, cell) => {
+      const header = headers[index];
+      const data = parseCellData(cell);
+      const movieUrl = parseMovieUrl(index, cell);
+
+      if (movieUrl) {
+        movie.url = movieUrl;
+      }
+
+      movie[header] = data;
+    });
+
+    if (!movie.status) {
+      movie.status = 'Released';
+    }
+
+    scrapMovieImage(movie.url)
+      .then((imageUrl) => {
+        movie.imageUrl = imageUrl;
+
+        return movie;
+      })
+      .then(m => resolve(m));
+  });
+}
+
+function scrapMoviesData() {
   client.get({
     path: `${pageHtmlEndpointPath}/Marvel_Cinematic_Universe`,
     query: {
@@ -93,12 +140,21 @@ function run() {
     const table = $('.wikitable');
     const headers = parseHeaders(table);
     const movies = [];
+    const writeStream = fs.createWriteStream('data-from-wiki.json');
 
     table
       .find('tr')
       .filter((_, row) => !isPhaseRow($(row).text()))
       .filter((_, row) => !isEmpty(row))
-      .each((id, row) => movies.push(parseMovieData(id, $(row), headers)));
+      // .each((id, row) => movies.push(parseMovieData(id, $(row), headers)));
+      .each((id, row) => parseMovieData(id, $(row), headers).then((md) => {
+        // movies.push(md);
+
+
+        writeStream.write(JSON.stringify(md, null, 2) + ',');
+
+
+      }));
 
     writeToFileHtml(
       cheerio
@@ -106,8 +162,12 @@ function run() {
         .html()
     );
 
-    writeToFile(JSON.stringify({ movies }, null, 2));
+    // writeToFile(JSON.stringify({ movies }, null, 2));
   });
+}
+
+function run() {
+  return scrapMoviesData();
 }
 
 run();
