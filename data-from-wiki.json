@@ -1,0 +1,204 @@
+{
+  "movies": [
+    {
+      "id": 0,
+      "film": "Iron Man",
+      "releaseDate": "Fri Aug 24 2018 02:39:24 GMT+0200 (CEST)",
+      "director": "Jon Favreau",
+      "screenwriter": "Mark Fergus & Hawk Ostby and Art Marcum & Matt Holloway[136]",
+      "producer": "Avi Arad and Kevin Feige",
+      "status": "Released"
+    },
+    {
+      "id": 1,
+      "film": "The Incredible Hulk",
+      "releaseDate": "Fri Aug 24 2018 02:39:24 GMT+0200 (CEST)",
+      "director": "Louis Leterrier",
+      "screenwriter": "Zak Penn",
+      "producer": "Avi Arad, Gale Anne Hurd  and Kevin Feige",
+      "status": "Released"
+    },
+    {
+      "id": 2,
+      "film": "Iron Man 2",
+      "releaseDate": "Fri Aug 24 2018 02:39:24 GMT+0200 (CEST)",
+      "director": "Jon Favreau",
+      "screenwriter": "Justin Theroux",
+      "producer": "Kevin Feige",
+      "status": "Released"
+    },
+    {
+      "id": 3,
+      "film": "Thor",
+      "releaseDate": "Fri Aug 24 2018 02:39:24 GMT+0200 (CEST)",
+      "director": "Kenneth Branagh",
+      "screenwriter": "Ashley Edward Miller & Zack Stentz and Don Payne",
+      "status": "Released"
+    },
+    {
+      "id": 4,
+      "film": "Captain America: The First Avenger",
+      "releaseDate": "Fri Aug 24 2018 02:39:24 GMT+0200 (CEST)",
+      "director": "Joe Johnston",
+      "screenwriter": "Christopher Markus & Stephen McFeely",
+      "status": "Released"
+    },
+    {
+      "id": 5,
+      "film": "Marvel's The Avengers",
+      "releaseDate": "Fri Aug 24 2018 02:39:24 GMT+0200 (CEST)",
+      "director": "Joss Whedon",
+      "status": "Released"
+    },
+    {
+      "id": 6,
+      "film": "Iron Man 3",
+      "releaseDate": "Fri Aug 24 2018 02:39:24 GMT+0200 (CEST)",
+      "director": "Shane Black",
+      "screenwriter": "Drew Pearce and Shane Black[147]",
+      "producer": "Kevin Feige",
+      "status": "Released"
+    },
+    {
+      "id": 7,
+      "film": "Thor: The Dark World",
+      "releaseDate": "Fri Aug 24 2018 02:39:24 GMT+0200 (CEST)",
+      "director": "Alan Taylor",
+      "screenwriter": "Christopher L. Yost and Christopher Markus & Stephen McFeely",
+      "status": "Released"
+    },
+    {
+      "id": 8,
+      "film": "Captain America: The Winter Soldier",
+      "releaseDate": "Fri Aug 24 2018 02:39:24 GMT+0200 (CEST)",
+      "director": "Anthony and Joe Russo",
+      "screenwriter": "Christopher Markus & Stephen McFeely",
+      "status": "Released"
+    },
+    {
+      "id": 9,
+      "film": "Guardians of the Galaxy",
+      "releaseDate": "Fri Aug 24 2018 02:39:24 GMT+0200 (CEST)",
+      "director": "James Gunn",
+      "screenwriter": "James Gunn and Nicole Perlman",
+      "status": "Released"
+    },
+    {
+      "id": 10,
+      "film": "Avengers: Age of Ultron",
+      "releaseDate": "Fri Aug 24 2018 02:39:24 GMT+0200 (CEST)",
+      "director": "Joss Whedon",
+      "status": "Released"
+    },
+    {
+      "id": 11,
+      "film": "Ant-Man",
+      "releaseDate": "July 17, 2015",
+      "director": "Peyton Reed",
+      "screenwriter": "Edgar Wright & Joe Cornish and Adam McKay & Paul Rudd",
+      "status": "Released"
+    },
+    {
+      "id": 12,
+      "film": "Captain America: Civil War",
+      "releaseDate": "Fri Aug 24 2018 02:39:24 GMT+0200 (CEST)",
+      "director": "Anthony and Joe Russo",
+      "screenwriter": "Christopher Markus & Stephen McFeely",
+      "producer": "Kevin Feige",
+      "status": "Released"
+    },
+    {
+      "id": 13,
+      "film": "Doctor Strange",
+      "releaseDate": "Fri Aug 24 2018 02:39:24 GMT+0200 (CEST)",
+      "director": "Scott Derrickson",
+      "screenwriter": "Jon Spaihts and Scott Derrickson & C. Robert Cargill",
+      "status": "Released"
+    },
+    {
+      "id": 14,
+      "film": "Guardians of the Galaxy Vol. 2",
+      "releaseDate": "Fri Aug 24 2018 02:39:24 GMT+0200 (CEST)",
+      "director": "James Gunn",
+      "status": "Released"
+    },
+    {
+      "id": 15,
+      "film": "Spider-Man: Homecoming",
+      "releaseDate": "Fri Aug 24 2018 02:39:24 GMT+0200 (CEST)",
+      "director": "Jon Watts",
+      "screenwriter": "Jonathan Goldstein & John Francis Daley andJon Watts & Christopher Ford andChris McKenna & Erik Sommers",
+      "producer": "Kevin Feige and Amy Pascal",
+      "status": "Released"
+    },
+    {
+      "id": 16,
+      "film": "Thor: Ragnarok",
+      "releaseDate": "Fri Aug 24 2018 02:39:24 GMT+0200 (CEST)",
+      "director": "Taika Waititi",
+      "screenwriter": "Eric Pearson and Craig Kyle & Christopher L. Yost[164]",
+      "producer": "Kevin Feige",
+      "status": "Released"
+    },
+    {
+      "id": 17,
+      "film": "Black Panther",
+      "releaseDate": "Fri Aug 24 2018 02:39:24 GMT+0200 (CEST)",
+      "director": "Ryan Coogler",
+      "screenwriter": "Ryan Coogler & Joe Robert Cole[167]",
+      "status": "Released"
+    },
+    {
+      "id": 18,
+      "film": "Avengers: Infinity War",
+      "releaseDate": "Fri Aug 24 2018 02:39:24 GMT+0200 (CEST)",
+      "director": "Anthony and Joe Russo",
+      "screenwriter": "Christopher Markus & Stephen McFeely",
+      "status": "Released"
+    },
+    {
+      "id": 19,
+      "film": "Ant-Man and the Wasp",
+      "releaseDate": "Fri Aug 24 2018 02:39:24 GMT+0200 (CEST)",
+      "director": "Peyton Reed",
+      "screenwriter": "Chris McKenna & Erik Sommers andPaul Rudd & Andrew Barrer & Gabriel Ferrari",
+      "producer": "Kevin Feige and Stephen Broussard",
+      "status": "Released"
+    },
+    {
+      "id": 20,
+      "film": "Captain Marvel",
+      "releaseDate": "Fri Aug 24 2018 02:39:24 GMT+0200 (CEST)",
+      "director": "Anna Boden and Ryan Fleck",
+      "screenwriter": "Meg LeFauve and Nicole Perlman andGeneva Robertson-Dworet andLiz Flahive & Carly Mensch andAnna Boden & Ryan Fleck",
+      "producer": "Kevin Feige",
+      "status": "Post-production"
+    },
+    {
+      "id": 21,
+      "film": "Untitled Avengers film",
+      "releaseDate": "Fri Aug 24 2018 02:39:24 GMT+0200 (CEST)",
+      "director": "Anthony and Joe Russo",
+      "screenwriter": "Christopher Markus & Stephen McFeely",
+      "status": "Released"
+    },
+    {
+      "id": 22,
+      "film": "Spider-Man: Far From Home",
+      "releaseDate": "Fri Aug 24 2018 02:39:24 GMT+0200 (CEST)",
+      "director": "Jon Watts",
+      "screenwriter": "Chris McKenna & Erik Sommers",
+      "producer": "Kevin Feige and Amy Pascal",
+      "status": "Filming"
+    },
+    {
+      "id": 23,
+      "film": "Guardians of the Galaxy Vol. 3",
+      "releaseDate": "2020 (2020)",
+      "director": "TBA",
+      "screenwriter": "James Gunn",
+      "producer": "Kevin Feige",
+      "status": "In development"
+    }
+  ]
+}

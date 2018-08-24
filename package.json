@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon index.js",
     "debug": "nodemon --inspect index.js",
-    "pretest": "eslint --fix --ignore-path .eslintignore .",
+    "pretest": "npm run lint",
+    "lint": "eslint --fix --ignore-path .eslintignore .",
     "test": "jest",
     "test:watch": "jest --watch"
   },
