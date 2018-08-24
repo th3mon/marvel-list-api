@@ -2,7 +2,7 @@ const clients = require('restify-clients');
 const cheerio = require('cheerio');
 const fs = require('fs');
 const moment = require('moment');
-const parseHeaders = require('./parse-movie-header');
+const parseHeaderCells = require('./parse-header-cells');
 
 const wikiApiUrl = 'https://en.wikipedia.org';
 const pageHtmlEndpointPath = '/api/rest_v1/page/html';
@@ -112,8 +112,7 @@ const getHeaders = $headers => {
   $headers.each((_, headerCell) =>
     headersTexts.push(cheerio.load(headerCell).text()));
 
-  console.log(parseHeaders);
-  return parseHeaders(headersTexts);
+  return parseHeaderCells(headersTexts);
 };
 
 function scrapMoviesData() {
