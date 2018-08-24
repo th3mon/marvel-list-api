@@ -2,6 +2,7 @@ const clients = require('restify-clients');
 const cheerio = require('cheerio');
 const fs = require('fs');
 const lodash = require('lodash');
+const moment = require('moment');
 
 const wikiApiUrl = 'https://en.wikipedia.org';
 const pageHtmlEndpointPath = '/api/rest_v1/page/html';
@@ -51,14 +52,17 @@ function writeToFile(content) {
 }
 
 function parseCellData(cell) {
-  const data = cheerio.load(cell).text();
+  let data = cheerio.load(cell).text();
   const datePattern = /\d{4}-\d{2}-\d{2}/;
   const isDate = s => datePattern.test(s);
   const wikiReferencesPattern = /\[\d+\]/;
+  const parseDate = date => moment(date.match(datePattern)[0]).format();
+
+  data = data.replace(wikiReferencesPattern, '');
 
   return isDate(data)
-    ? Date(datePattern.exec(data))
-    : data.replace(wikiReferencesPattern, '');
+    ? parseDate(data)
+    : data;
 }
 
 function parseMovieUrl(index, cell) {
