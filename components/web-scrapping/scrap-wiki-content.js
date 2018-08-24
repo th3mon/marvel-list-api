@@ -5,6 +5,7 @@ const moment = require('moment');
 const parseHeaderCells = require('./parse-header-cells');
 const isPhaseRow = require('./is-phase-row');
 const isEmptyRow = require('./is-empty-row');
+const createJsonFileWriter = require('./create-json-file-writer');
 
 const wikiApiUrl = 'https://en.wikipedia.org';
 const pageHtmlEndpointPath = '/api/rest_v1/page/html';
@@ -21,9 +22,9 @@ function writeToFileHtml(content) {
 }
 
 function writeToFile(content) {
-  const writeStream = fs.createWriteStream('data-from-wiki.json');
+  const wikiDataWriter = createJsonFileWriter('data-from-wiki');
 
-  writeStream.write(content);
+  wikiDataWriter(content);
 }
 
 function parseCellData(cell) {
