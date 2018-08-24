@@ -6,6 +6,7 @@
   "scripts": {
     "start": "nodemon index.js",
     "debug": "nodemon --inspect index.js",
+    "pretest": "eslint --fix --ignore-path .eslintignore .",
     "test": "jest",
     "test:watch": "jest --watch"
   },
@@ -21,6 +22,10 @@
   },
   "homepage": "https://github.com/th3mon/marvel-list-api#readme",
   "devDependencies": {
+    "eslint": "^5.4.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jest": "^21.21.0",
     "jest": "^23.5.0",
     "nodemon": "^1.17.4"
   },
