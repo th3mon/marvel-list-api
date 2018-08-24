@@ -8,7 +8,9 @@
     "jest/prefer-to-have-length": "warn",
     "jest/valid-expect": "error",
     "comma-dangle": [2, "never"],
-    "max-len": [2, {"code": 120, "tabWidth": 4, "ignoreUrls": true}]
+    "max-len": [2, {"code": 120, "tabWidth": 4, "ignoreUrls": true}],
+    "arrow-parens": [2, "as-needed"],
+    "implicit-arrow-linebreak": off
   },
   "env": {
     "jest/globals": true

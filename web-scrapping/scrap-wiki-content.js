@@ -30,12 +30,13 @@ function parseHeaders(table) {
 }
 
 const isPhaseRow = rowText => rowText.includes('Phase');
-const isEmpty = row => Boolean(
-  !cheerio
-    .load(row)
-    .text()
-    .trim()
-);
+const isEmpty = row =>
+  Boolean(
+    !cheerio
+      .load(row)
+      .text()
+      .trim()
+  );
 
 function writeToFileHtml(content) {
   const writeStream = fs.createWriteStream('data-from-wiki.html');
@@ -69,7 +70,9 @@ function parseMovieUrl(index, cell) {
   const $anchor = cheerio.load(cell)('a');
   const isMovieTitleIndex = () => index === 0;
 
-  return isMovieTitleIndex() ? $anchor.attr('href').replace('./', '/') : '';
+  return isMovieTitleIndex()
+    ? $anchor.attr('href').replace('./', '/')
+    : '';
 }
 
 function scrapMovieImageUrl(url) {
@@ -165,23 +168,22 @@ function run() {
   const scrappedData = [];
   let progress = 0;
 
-  return new Promise((resolve) => {
-    scrapMoviesData().then((movies) => {
+  return new Promise(resolve => {
+    scrapMoviesData().then(movies => {
       moviesLength = movies.length;
 
-      movies.forEach((movie) => {
-        scrapMovieImageUrl(movie.url)
-          .then((imageUrl) => {
-            scrappedData[movie.id] = Object.assign(movie, { imageUrl });
+      movies.forEach(movie => {
+        scrapMovieImageUrl(movie.url).then(imageUrl => {
+          scrappedData[movie.id] = Object.assign(movie, { imageUrl });
 
-            counter += 1;
+          counter += 1;
 
-            progress = counter === 0
-              ? counter
-              : parseInt(counter / moviesLength * 100, 10);
+          progress = counter === 0
+            ? counter
+            : parseInt((counter / moviesLength) * 100, 10);
 
-            console.log(`${progress}%`);
-          });
+          console.log(`${progress}%`);
+        });
       });
     });
 
