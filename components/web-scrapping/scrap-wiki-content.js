@@ -190,6 +190,4 @@ function run() {
   });
 }
 
-run();
-
 module.exports = { run, isPhaseRow };
