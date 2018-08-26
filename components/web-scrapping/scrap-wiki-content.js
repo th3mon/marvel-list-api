@@ -12,20 +12,12 @@ const pageHtmlEndpointPath = '/api/rest_v1/page/html';
 const featureFilmsSectionId = 'mwAac';
 const client = clients.createJsonClient(wikiApiUrl);
 const stringClient = clients.createStringClient(wikiApiUrl);
+const parseMovieUrl = require('./parse-movie-url');
 
 function writeToFile(content) {
   const wikiDataWriter = createJsonFileWriter('data-from-wiki');
 
   wikiDataWriter(content);
-}
-
-function parseMovieUrl(index, cell) {
-  const $anchor = cheerio.load(cell)('a');
-  const isMovieTitleIndex = () => index === 0;
-
-  return isMovieTitleIndex()
-    ? $anchor.attr('href').replace('./', '/')
-    : '';
 }
 
 function scrapMovieImageUrl(url) {
