@@ -6,46 +6,21 @@ const isPhaseRow = require('./is-phase-row');
 const isEmptyRow = require('./is-empty-row');
 const createJsonFileWriter = require('./create-json-file-writer');
 const parseCell = require('./parse-cell');
+const config = require('../../config');
 
 const wikiApiUrl = 'https://en.wikipedia.org';
 const pageHtmlEndpointPath = '/api/rest_v1/page/html';
 const featureFilmsSectionId = 'mwAac';
 const client = clients.createJsonClient(wikiApiUrl);
-const stringClient = clients.createStringClient(wikiApiUrl);
 const parseMovieUrl = require('./parse-movie-url');
+const createMoviePosterUrlScrapper = require('./create-movie-poster-url-scrapper');
+
+const scrapMoviePosterUrl = createMoviePosterUrlScrapper(clients.createStringClient(config.wikiApi.url));
 
 function writeToFile(content) {
   const wikiDataWriter = createJsonFileWriter('data-from-wiki');
 
   wikiDataWriter(content);
-}
-
-function scrapMovieImageUrl(url) {
-  return new Promise((resolve, reject) => {
-    if (url) {
-      stringClient.get(
-        {
-          path: `${pageHtmlEndpointPath}${url}`
-        },
-        (err, req, res, obj) => {
-          if (err) {
-            console.error(err);
-
-            reject(err);
-          }
-
-          const $ = cheerio.load(obj);
-          const image = $('img[src*="poster"]');
-          const src = image.attr('src');
-          const protocol = 'https';
-
-          resolve(`${protocol}:${src}`);
-        }
-      );
-    } else {
-      resolve('');
-    }
-  });
 }
 
 function parseMovieData(id, row, headers) {
@@ -121,19 +96,17 @@ function run() {
     scrapMoviesData().then(movies => {
       moviesLength = movies.length;
 
-      movies.forEach(movie => {
-        scrapMovieImageUrl(movie.url).then(imageUrl => {
-          scrappedData[movie.id] = Object.assign(movie, { imageUrl });
+      movies.forEach(movie => scrapMoviePosterUrl(movie.url).then(imageUrl => {
+        scrappedData[movie.id] = Object.assign(movie, { imageUrl });
 
-          counter += 1;
+        counter += 1;
 
-          progress = counter === 0
-            ? counter
-            : parseInt((counter / moviesLength) * 100, 10);
+        progress = counter === 0
+          ? counter
+          : parseInt((counter / moviesLength) * 100, 10);
 
-          console.log(`${progress}%`);
-        });
-      });
+        console.log(`${progress}%`);
+      }));
     });
 
     const interval = setInterval(() => {
