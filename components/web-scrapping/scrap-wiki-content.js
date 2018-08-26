@@ -1,11 +1,11 @@
 const clients = require('restify-clients');
 const cheerio = require('cheerio');
-const moment = require('moment');
 const lodash = require('lodash');
 const parseHeaderCells = require('./parse-header-cells');
 const isPhaseRow = require('./is-phase-row');
 const isEmptyRow = require('./is-empty-row');
 const createJsonFileWriter = require('./create-json-file-writer');
+const parseCell = require('./parse-cell');
 
 const wikiApiUrl = 'https://en.wikipedia.org';
 const pageHtmlEndpointPath = '/api/rest_v1/page/html';
@@ -17,20 +17,6 @@ function writeToFile(content) {
   const wikiDataWriter = createJsonFileWriter('data-from-wiki');
 
   wikiDataWriter(content);
-}
-
-function parseCellData(cell) {
-  let data = cheerio.load(cell).text();
-  const datePattern = /\d{4}-\d{2}-\d{2}/;
-  const isDate = s => datePattern.test(s);
-  const wikiReferencesPattern = /\[\d+\]/;
-  const parseDate = date => moment(date.match(datePattern)[0]).format();
-
-  data = data.replace(wikiReferencesPattern, '');
-
-  return isDate(data)
-    ? parseDate(data)
-    : data;
 }
 
 function parseMovieUrl(index, cell) {
@@ -75,7 +61,7 @@ function parseMovieData(id, row, headers) {
 
   row.children().each((index, cell) => {
     const header = headers[index];
-    const data = parseCellData(cell);
+    const data = parseCell(cell);
     const movieUrl = parseMovieUrl(index, cell);
 
     if (movieUrl) {
