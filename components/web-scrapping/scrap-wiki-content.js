@@ -1,6 +1,7 @@
 const clients = require('restify-clients');
 const cheerio = require('cheerio');
 const moment = require('moment');
+const lodash = require('lodash');
 const parseHeaderCells = require('./parse-header-cells');
 const isPhaseRow = require('./is-phase-row');
 const isEmptyRow = require('./is-empty-row');
@@ -161,7 +162,9 @@ function run() {
       if (moviesLength === counter) {
         clearInterval(interval);
 
-        writeToFile(JSON.stringify({ movies: scrappedData }, null, 2));
+        if (!lodash.isEmpty(scrappedData)) {
+          writeToFile(JSON.stringify({ movies: scrappedData }, null, 2));
+        }
 
         resolve(console.log('done!'));
       }
