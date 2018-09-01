@@ -5,7 +5,6 @@ describe('Parse Cell', () => {
   it('should parse text from cell', () => {
     const cell = '<td>Some Data</td>';
 
-
     const actual = parseCell(cell);
     const expected = 'Some Data';
 
