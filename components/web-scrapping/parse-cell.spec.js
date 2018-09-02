@@ -21,7 +21,28 @@ describe('Parse Cell', () => {
   });
 
   it('should remove wiki reference', () => {
-    const cell = '<td>Some Data[123]</td>';
+    const cell = `<td>Some Data
+    [123]</td>`;
+
+    const actual = parseCell(cell);
+    const expected = 'Some Data';
+
+    expect(actual).toEqual(expected);
+  });
+
+  it('should remove new line and carriage return', () => {
+    const cell = `<td>
+      Some Data
+    </td>`;
+
+    const actual = parseCell(cell);
+    const expected = 'Some Data';
+
+    expect(actual).toEqual(expected);
+  });
+
+  it('should change occurrence of tow or more spaces to one space', () => {
+    const cell = '<td>Some             Data</td>';
 
     const actual = parseCell(cell);
     const expected = 'Some Data';

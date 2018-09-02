@@ -5,14 +5,13 @@ const parseHeaderCells = require('./parse-header-cells');
 const isPhaseRow = require('./is-phase-row');
 const isEmptyRow = require('./is-empty-row');
 const createJsonFileWriter = require('./create-json-file-writer');
-const parseCell = require('./parse-cell');
+const parseMovieData = require('./parse-movie-data');
 const config = require('../../config');
 
 const wikiApiUrl = 'https://en.wikipedia.org';
 const pageHtmlEndpointPath = '/api/rest_v1/page/html';
 const featureFilmsSectionId = 'mwAac';
 const client = clients.createJsonClient(wikiApiUrl);
-const parseMovieUrl = require('./parse-movie-url');
 const createMoviePosterUrlScrapper = require('./create-movie-poster-url-scrapper');
 
 const scrapMoviePosterUrl = createMoviePosterUrlScrapper(clients.createStringClient(config.wikiApi.url));
@@ -21,28 +20,6 @@ function writeToFile(content) {
   const wikiDataWriter = createJsonFileWriter('data-from-wiki');
 
   wikiDataWriter(content);
-}
-
-function parseMovieData(id, row, headers) {
-  const movie = { id };
-
-  row.children().each((index, cell) => {
-    const header = headers[index];
-    const data = parseCell(cell);
-    const movieUrl = parseMovieUrl(index, cell);
-
-    if (movieUrl) {
-      movie.url = movieUrl;
-    }
-
-    movie[header] = data;
-  });
-
-  if (!movie.status) {
-    movie.status = 'Released';
-  }
-
-  return movie;
 }
 
 const getHeaders = $headers => {
@@ -79,7 +56,13 @@ function scrapMoviesData() {
         .find('tr')
         .filter((_, row) => !isPhaseRow($(row).text()))
         .filter((_, row) => !isEmptyRow(row))
-        .each((id, row) => movies.push(parseMovieData(id, $(row), headers)));
+        .each((id, row) => {
+          const movieData = parseMovieData(id, row, headers);
+
+          if (movieData) {
+            movies.push(movieData);
+          }
+        });
 
       resolve(movies);
     }
