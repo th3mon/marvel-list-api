@@ -1,17 +1,8 @@
 const clients = require('restify-clients');
-const cheerio = require('cheerio');
 const lodash = require('lodash');
-const parseHeaderCells = require('./parse-header-cells');
-const isPhaseRow = require('./is-phase-row');
-const isEmptyRow = require('./is-empty-row');
 const createJsonFileWriter = require('./create-json-file-writer');
-const parseMovieData = require('./parse-movie-data');
 const config = require('../../config');
-
-const wikiApiUrl = 'https://en.wikipedia.org';
-const pageHtmlEndpointPath = '/api/rest_v1/page/html';
-const featureFilmsSectionId = 'mwAac';
-const client = clients.createJsonClient(wikiApiUrl);
+const scrapMoviesData = require('./scrap-movies-data');
 const createMoviePosterUrlScrapper = require('./create-movie-poster-url-scrapper');
 
 const scrapMoviePosterUrl = createMoviePosterUrlScrapper(clients.createStringClient(config.wikiApi.url));
@@ -22,57 +13,10 @@ function writeToFile(content) {
   wikiDataWriter(content);
 }
 
-const getHeaders = $headers => {
-  const headersTexts = [];
-
-  $headers.each((_, headerCell) =>
-    headersTexts.push(cheerio.load(headerCell).text()));
-
-  return parseHeaderCells(headersTexts);
-};
-
-function scrapMoviesData() {
-  return new Promise((resolve, reject) => client.get(
-    {
-      path: `${pageHtmlEndpointPath}/Marvel_Cinematic_Universe`,
-      query: {
-        sections: featureFilmsSectionId
-      }
-    },
-    (err, req, res, obj) => {
-      if (err) {
-        reject(err);
-      }
-
-      const html = obj[featureFilmsSectionId];
-      const $ = cheerio.load(html);
-      const table = $('.wikitable');
-
-      const headers = getHeaders(table.find('tr:first-child th'));
-
-      const movies = [];
-
-      table
-        .find('tr')
-        .filter((_, row) => !isPhaseRow($(row).text()))
-        .filter((_, row) => !isEmptyRow(row))
-        .each((id, row) => {
-          const movieData = parseMovieData(id, row, headers);
-
-          if (movieData) {
-            movies.push(movieData);
-          }
-        });
-
-      resolve(movies);
-    }
-  ));
-}
-
 function run() {
+  const scrappedData = [];
   let moviesLength = -1;
   let counter = 0;
-  const scrappedData = [];
   let progress = 0;
 
   return new Promise(resolve => {
@@ -106,4 +50,4 @@ function run() {
   });
 }
 
-module.exports = { run, isPhaseRow };
+module.exports = { run };
