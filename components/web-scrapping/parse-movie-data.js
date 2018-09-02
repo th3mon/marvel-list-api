@@ -19,7 +19,7 @@ function parseMovieData(id, row, headers) {
     throw Error('headers should not be empty');
   }
 
-  $row('td').each((index, cell) => {
+  $row('td, th').each((index, cell) => {
     const header = headers[index];
     const data = parseCell(cell);
     const movieUrl = parseMovieUrl(index, cell);

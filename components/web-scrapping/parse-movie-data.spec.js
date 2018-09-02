@@ -1,4 +1,5 @@
 const parseMovieData = require('./parse-movie-data');
+const { parseDate } = require('./date-utils');
 
 describe('Parse Movie Data', () => {
   const id = 0;
@@ -6,7 +7,7 @@ describe('Parse Movie Data', () => {
   const row = `<tr>
     <th scope="row" style="text-align:left">
       <i>
-        <a href="/wiki/Iron_Man_(2008_film)" title="Iron Man (2008 film)">
+        <a href="/Iron_Man_(2008_film)" title="Iron Man (2008 film)">
           Iron Man
         </a>
       </i>
@@ -18,7 +19,7 @@ describe('Parse Movie Data', () => {
       </span>
     </td>
     <td>
-      <a href="/wiki/Jon_Favreau" title="Jon Favreau">
+      <a href="/Jon_Favreau" title="Jon Favreau">
         Jon Favreau
       </a>
       <sup id="cite_ref-April2006Variety_135-0" class="reference">
@@ -28,11 +29,11 @@ describe('Parse Movie Data', () => {
       </sup>
     </td>
     <td>
-      <a href="/wiki/Mark_Fergus_and_Hawk_Ostby" title="Mark Fergus and Hawk Ostby">
+      <a href="/Mark_Fergus_and_Hawk_Ostby" title="Mark Fergus and Hawk Ostby">
         Mark Fergus &amp; Hawk Ostby
       </a>
       &nbsp;and&nbsp;
-      <a href="/wiki/Art_Marcum_and_Matt_Holloway" title="Art Marcum and Matt Holloway">
+      <a href="/Art_Marcum_and_Matt_Holloway" title="Art Marcum and Matt Holloway">
         Art Marcum &amp; Matt Holloway
       </a>
       <sup id="cite_ref-April2006Variety_135-1" class="reference">
@@ -47,11 +48,11 @@ describe('Parse Movie Data', () => {
       </sup>
     </td>
     <td>
-      <a href="/wiki/Avi_Arad" title="Avi Arad">
+      <a href="/Avi_Arad" title="Avi Arad">
         Avi Arad
       </a>
       &nbsp;and&nbsp;
-      <a href="/wiki/Kevin_Feige" title="Kevin Feige">
+      <a href="/Kevin_Feige" title="Kevin Feige">
         Kevin Feige
       </a>
     </td>
@@ -72,13 +73,14 @@ describe('Parse Movie Data', () => {
   it('should parse movie data', () => {
     const actual = parseMovieData(id, row, headers);
     const expected = {
-      director: 'Mark Fergus & Hawk Ostby and Art Marcum & Matt Holloway',
-      film: '2008-05-02T00:00:00+02:00',
+      director: 'Jon Favreau',
+      film: 'Iron Man',
       id: 0,
-      producer: 'Released',
-      releaseDate: 'Jon Favreau',
-      screenwriter: 'Avi Arad and Kevin Feige',
-      status: 'Released'
+      producer: 'Avi Arad and Kevin Feige',
+      releaseDate: parseDate('2008-05-02'),
+      screenwriter: 'Mark Fergus & Hawk Ostby and Art Marcum & Matt Holloway',
+      status: 'Released',
+      url: '/Iron_Man_(2008_film)'
     };
 
     expect(actual).toEqual(expected);
