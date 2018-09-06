@@ -6,7 +6,7 @@
       "film": "Iron Man",
       "releaseDate": "2008-05-02T00:00:00+02:00",
       "director": "Jon Favreau",
-      "screenwriter": "Mark Fergus & Hawk Ostby and Art Marcum & Matt Holloway[136]",
+      "screenwriter": "Mark Fergus & Hawk Ostby and Art Marcum & Matt Holloway",
       "producer": "Avi Arad and Kevin Feige",
       "status": "Released",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/7/70/Ironmanposter.JPG"
@@ -18,7 +18,7 @@
       "releaseDate": "2008-06-13T00:00:00+02:00",
       "director": "Louis Leterrier",
       "screenwriter": "Zak Penn",
-      "producer": "Avi Arad, Gale Anne Hurd  and Kevin Feige",
+      "producer": "Avi Arad, Gale Anne Hurd and Kevin Feige",
       "status": "Released",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/8/88/The_Incredible_Hulk_poster.jpg"
     },
@@ -60,7 +60,7 @@
       "releaseDate": "2012-05-04T00:00:00+02:00",
       "director": "Joss Whedon",
       "status": "Released",
-      "imageUrl": "https:undefined"
+      "imageUrl": ""
     },
     {
       "id": 6,
@@ -68,7 +68,7 @@
       "film": "Iron Man 3",
       "releaseDate": "2013-05-03T00:00:00+02:00",
       "director": "Shane Black",
-      "screenwriter": "Drew Pearce and Shane Black[147]",
+      "screenwriter": "Drew Pearce and Shane Black",
       "producer": "Kevin Feige",
       "status": "Released",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/d/d5/Iron_Man_3_theatrical_poster.jpg"
@@ -91,7 +91,7 @@
       "director": "Anthony and Joe Russo",
       "screenwriter": "Christopher Markus & Stephen McFeely",
       "status": "Released",
-      "imageUrl": "https:undefined"
+      "imageUrl": ""
     },
     {
       "id": 9,
@@ -169,7 +169,7 @@
       "film": "Thor: Ragnarok",
       "releaseDate": "2017-11-03T00:00:00+01:00",
       "director": "Taika Waititi",
-      "screenwriter": "Eric Pearson and Craig Kyle & Christopher L. Yost[164]",
+      "screenwriter": "Eric Pearson and Craig Kyle & Christopher L. Yost",
       "producer": "Kevin Feige",
       "status": "Released",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/7/7d/Thor_Ragnarok_poster.jpg"
@@ -180,7 +180,7 @@
       "film": "Black Panther",
       "releaseDate": "2018-02-16T00:00:00+01:00",
       "director": "Ryan Coogler",
-      "screenwriter": "Ryan Coogler & Joe Robert Cole[167]",
+      "screenwriter": "Ryan Coogler & Joe Robert Cole",
       "status": "Released",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/0/0c/Black_Panther_film_poster.jpg"
     },
@@ -214,7 +214,7 @@
       "screenwriter": "Meg LeFauve and Nicole Perlman andGeneva Robertson-Dworet andLiz Flahive & Carly Mensch andAnna Boden & Ryan Fleck",
       "producer": "Kevin Feige",
       "status": "Post-production",
-      "imageUrl": "https:undefined"
+      "imageUrl": ""
     },
     {
       "id": 21,
@@ -224,7 +224,7 @@
       "director": "Anthony and Joe Russo",
       "screenwriter": "Christopher Markus & Stephen McFeely",
       "status": "Released",
-      "imageUrl": "https:undefined"
+      "imageUrl": ""
     },
     {
       "id": 22,
@@ -235,18 +235,18 @@
       "screenwriter": "Chris McKenna & Erik Sommers",
       "producer": "Kevin Feige and Amy Pascal",
       "status": "Filming",
-      "imageUrl": "https:undefined"
+      "imageUrl": ""
     },
     {
       "id": 23,
-      "url": "/List_of_Marvel_Cinematic_Universe_films#Guardians_of_the_Galaxy_Vol._3_(2020)",
+      "url": "/List_of_Marvel_Cinematic_Universe_films#Guardians_of_the_Galaxy_Vol._3_(TBA)",
       "film": "Guardians of the Galaxy Vol. 3",
-      "releaseDate": "2020 (2020)",
+      "releaseDate": "TBA",
       "director": "TBA",
       "screenwriter": "James Gunn",
       "producer": "Kevin Feige",
       "status": "In development",
-      "imageUrl": "https:undefined"
+      "imageUrl": ""
     }
   ]
 }
