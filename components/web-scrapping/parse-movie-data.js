@@ -3,9 +3,17 @@ const lodash = require('lodash');
 const parseCell = require('./parse-cell');
 const parseMovieUrl = require('./parse-movie-url');
 
+function getCells(row) {
+  const $ = cheerio.load('<table></table>');
+  const $table = $('table');
+
+  $table.append(row);
+
+  return $table.find('td, th');
+}
+
 function parseMovieData(id, row, headers) {
   const movie = { id };
-  const $row = cheerio.load(`<table>${row}</table>`);
 
   if (!row) {
     return null;
@@ -19,7 +27,7 @@ function parseMovieData(id, row, headers) {
     throw Error('headers should not be empty');
   }
 
-  $row('td, th').each((index, cell) => {
+  getCells(row).each((index, cell) => {
     const header = headers[index];
     const data = parseCell(cell);
     const movieUrl = parseMovieUrl(index, cell);

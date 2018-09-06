@@ -2,9 +2,10 @@ const clients = require('restify-clients');
 const lodash = require('lodash');
 const createJsonFileWriter = require('./create-json-file-writer');
 const config = require('../../config');
-const scrapMoviesData = require('./scrap-movies-data');
+const createMovieDataScrapper = require('./create-scrap-movies-data');
 const createMoviePosterUrlScrapper = require('./create-movie-poster-url-scrapper');
 
+const scrapMoviesData = createMovieDataScrapper(clients.createJsonClient(config.wikiApi.url));
 const scrapMoviePosterUrl = createMoviePosterUrlScrapper(clients.createStringClient(config.wikiApi.url));
 
 function writeToFile(content) {
