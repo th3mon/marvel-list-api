@@ -5,8 +5,12 @@ const config = require('../../config');
 const createMovieDataScrapper = require('./create-scrap-movies-data');
 const createMoviePosterUrlScrapper = require('./create-movie-poster-url-scrapper');
 
-const scrapMoviesData = createMovieDataScrapper(clients.createJsonClient(config.wikiApi.url));
-const scrapMoviePosterUrl = createMoviePosterUrlScrapper(clients.createStringClient(config.wikiApi.url));
+const scrapMoviesData = createMovieDataScrapper(
+  clients.createJsonClient(config.wikiApi.url)
+);
+const scrapMoviePosterUrl = createMoviePosterUrlScrapper(
+  clients.createStringClient(config.wikiApi.url)
+);
 
 function writeToFile(content) {
   const wikiDataWriter = createJsonFileWriter('data-from-wiki');
@@ -14,7 +18,7 @@ function writeToFile(content) {
   wikiDataWriter(content);
 }
 
-function run() {
+function scrapWikiContent() {
   const scrappedData = [];
   let moviesLength = -1;
   let counter = 0;
@@ -24,17 +28,20 @@ function run() {
     scrapMoviesData().then(movies => {
       moviesLength = movies.length;
 
-      movies.forEach(movie => scrapMoviePosterUrl(movie.url).then(imageUrl => {
-        scrappedData[movie.id] = Object.assign(movie, { imageUrl });
+      movies.forEach(movie =>
+        scrapMoviePosterUrl(movie.url).then(imageUrl => {
+          scrappedData[movie.id] = Object.assign(movie, { imageUrl });
 
-        counter += 1;
+          counter += 1;
 
-        progress = counter === 0
-          ? counter
-          : parseInt((counter / moviesLength) * 100, 10);
+          progress =
+            counter === 0
+              ? counter
+              : parseInt((counter / moviesLength) * 100, 10);
 
-        console.log(`${progress}%`);
-      }));
+          console.log(`${progress}%`);
+        })
+      );
     });
 
     const interval = setInterval(() => {
@@ -51,4 +58,14 @@ function run() {
   });
 }
 
-module.exports = { run };
+// module.exports = scrapWikiContent;
+const createWikiContentScrapper = (
+  scrapMoviesData,
+  scrapMoviePosterUrl,
+  writeToFile
+) => () => new Promise((resolve, reject) => {
+  scrapMoviesData()
+    .then(movies => resolve(movies));
+});
+
+module.exports = createWikiContentScrapper;
