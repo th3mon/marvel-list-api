@@ -43,4 +43,10 @@ describe('Scrap Wiki Content', () => {
       .then(expectedMovies => expect(expectedMovies).toHaveLength(movies.length))
       .then(done);
   });
+
+  it('should use scrapMoviesData', done => {
+    wikiContentScrapper()
+      .then(() => expect(scrapMoviesDataMock).toHaveBeenCalled())
+      .then(done);
+  });
 });
