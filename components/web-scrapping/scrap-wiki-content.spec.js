@@ -63,4 +63,12 @@ describe('Scrap Wiki Content', () => {
       .then(expectedMovies => expect(expectedMovies[0].imageUrl).toBe(imageUrl))
       .then(done);
   });
+
+  it('should all movies url scrapped', done => {
+    wikiContentScrapper()
+      .then(() =>
+        expect(scrapMoviePosterUrlMock).toHaveBeenCalledTimes(movies.length)
+      )
+      .then(done);
+  });
 });
