@@ -74,6 +74,8 @@ const createWikiContentScrapper = (
     )
     .then(movies => Promise.all(movies))
     .then(movies => {
+      writeToFile(JSON.stringify({ movies }, null, 2));
+
       return movies;
     });
 

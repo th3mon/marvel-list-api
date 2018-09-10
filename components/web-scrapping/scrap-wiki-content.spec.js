@@ -71,4 +71,20 @@ describe('Scrap Wiki Content', () => {
       )
       .then(done);
   });
+
+  it('should write scrapped movies data to file', done => {
+    wikiContentScrapper()
+      .then(() => expect(writeToFileMock).toHaveBeenCalled())
+      .then(done);
+  });
+
+  it('should file writer call with proper data', done => {
+    wikiContentScrapper()
+      .then(() =>
+        expect(writeToFileMock).toBeCalledWith(
+          JSON.stringify({ movies }, null, 2)
+        )
+      )
+      .then(done);
+  });
 });
