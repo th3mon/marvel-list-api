@@ -1,31 +1,42 @@
-const createWikiContentScrapper = require('./scrap-wiki-content');
-
-const movies = [
-  {
-    id: 0,
-    title: 'Iron Man'
-  },
-  {
-    id: 1,
-    film: 'The Incredible Hulk'
-  },
-  {
-    id: 2,
-    film: 'Iron Man 2'
-  }
-];
-
-const scrapMoviesDataMock = jest.fn().mockResolvedValue(movies);
-const imageUrl = '/movie-image-url.png';
-const scrapMoviePosterUrlMock = jest.fn().mockResolvedValue(imageUrl);
-const writeToFileMock = jest.fn();
-const wikiContentScrapper = createWikiContentScrapper(
-  scrapMoviesDataMock,
-  scrapMoviePosterUrlMock,
-  writeToFileMock
-);
+const createWikiContentScrapper = require('./wiki-content-scrapper');
 
 describe('Scrap Wiki Content', () => {
+  const imageUrl = '/movie-image-url.png';
+  const scrapMoviePosterUrlMock = jest.fn().mockResolvedValue(imageUrl);
+  let movies = [];
+  let scrapMoviesDataMock = jest.fn().mockResolvedValue(movies);
+  let writeToFileMock = jest.fn();
+  let wikiContentScrapper = createWikiContentScrapper(
+    scrapMoviesDataMock,
+    scrapMoviePosterUrlMock,
+    writeToFileMock
+  );
+
+  beforeEach(() => {
+    movies = [
+      {
+        id: 0,
+        title: 'Iron Man'
+      },
+      {
+        id: 1,
+        film: 'The Incredible Hulk'
+      },
+      {
+        id: 2,
+        film: 'Iron Man 2'
+      }
+    ];
+
+    scrapMoviesDataMock = jest.fn().mockResolvedValue(movies);
+    writeToFileMock = jest.fn();
+    wikiContentScrapper = createWikiContentScrapper(
+      scrapMoviesDataMock,
+      scrapMoviePosterUrlMock,
+      writeToFileMock
+    );
+  });
+
   it('should be defined', () => {
     expect(wikiContentScrapper).toBeDefined();
   });
@@ -85,6 +96,20 @@ describe('Scrap Wiki Content', () => {
           JSON.stringify({ movies }, null, 2)
         )
       )
+      .then(done);
+  });
+
+  it('should not write to file when there is no data', done => {
+    const emptyMoviesData = [];
+    scrapMoviesDataMock = jest.fn().mockResolvedValue(emptyMoviesData);
+    wikiContentScrapper = createWikiContentScrapper(
+      scrapMoviesDataMock,
+      scrapMoviePosterUrlMock,
+      writeToFileMock
+    );
+
+    wikiContentScrapper()
+      .then(() => expect(writeToFileMock).not.toHaveBeenCalled())
       .then(done);
   });
 });
