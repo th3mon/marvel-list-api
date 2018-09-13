@@ -9,7 +9,8 @@
     "pretest": "npm run lint",
     "lint": "eslint --fix --ignore-path .eslintignore .",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --watch --coverage"
   },
   "repository": {
     "type": "git",
