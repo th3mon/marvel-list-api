@@ -2,14 +2,20 @@ const { parseDate } = require('./date-utils');
 const createMovieDataScrapper = require('./create-scrap-movies-data');
 
 class FakeClient {
+  constructor(error, data) {
+    this.error = error;
+    this.object = data;
+  }
+
   get(url, callback) {
     callback(this.error, this.request, this.responce, this.object);
   }
 }
 
-const fakeClient = new FakeClient();
-fakeClient.object = {
-  mwAac: `
+describe('Scrap Movies Data', () => {
+  it('should scrap movie data', () => {
+    const fakeClient = new FakeClient(null, {
+      mwAac: `
     <section data-mw-section-id="11" id="mwAac">
       <h2 id="Feature_films">Feature films</h2>
       <div class="hatnote navigation-not-searchable" id="mwAag">
@@ -107,12 +113,9 @@ fakeClient.object = {
           </tr>
         </tbody>
       </table>
-    </section>
-  `
-};
+    </section>`
+    });
 
-describe('Scrap Movies Data', () => {
-  it('should scrap movie data', done => {
     const scrapMovieData = createMovieDataScrapper(fakeClient);
 
     const expected = {
@@ -126,8 +129,52 @@ describe('Scrap Movies Data', () => {
       url: '/Iron_Man_(2008_film)'
     };
 
-    scrapMovieData()
-      .then(movies => expect(movies[0]).toEqual(expected))
-      .then(done);
+    expect.assertions(1);
+
+    return scrapMovieData().then(movies => expect(movies[0]).toEqual(expected));
+  });
+
+  it('should NOT have movies data', async () => {
+    const fakeClientWithEmptyData = new FakeClient(null, {})
+    const scrapMovieData = createMovieDataScrapper(fakeClientWithEmptyData)
+
+    expect.assertions(1)
+    const movies = await scrapMovieData();
+    return expect(movies).toHaveLength(0)
+  });
+
+  it('should NOT have movies data when HTMLTable is empty', async () => {
+    const fakeClientWithEmptyData = new FakeClient(null, {
+      mwAac: `
+    <section data-mw-section-id="11" id="mwAac">
+      <h2 id="Feature_films">Feature films</h2>
+      <div class="hatnote navigation-not-searchable" id="mwAag">
+        Main article:
+        <a href="./List_of_Marvel_Cinematic_Universe_films" title="List of Marvel Cinematic Universe films">
+          List of Marvel Cinematic Universe films
+        </a>
+      </div>
+      <table class="wikitable plainrowheaders" id="mwAak">
+        <tbody id="mwAao"><tr></tr></tbody>
+      </table>
+    </section>`
+    })
+    const scrapMovieData = createMovieDataScrapper(fakeClientWithEmptyData)
+
+    expect.assertions(1)
+    const movies = await scrapMovieData();
+    return expect(movies).toHaveLength(0)
+  });
+
+  it('should throw error', async () => {
+    const fakeClientWithError = new FakeClient('Some Error');
+    const scrapMovieData = createMovieDataScrapper(fakeClientWithError);
+
+    expect.assertions(1);
+    try {
+      await scrapMovieData()
+    } catch(e) {
+      expect(e).toMatch('Some Error')
+    }
   });
 });

@@ -40,6 +40,10 @@ const createMovieDataScrapper = client => () => new Promise((resolve, reject) =>
 
     const html = obj[featureFilmsSectionId];
 
+    if (!html) {
+      resolve([]);
+    }
+
     const $ = cheerio.load(html);
     const table = $('.wikitable');
     const headers = getHeaders(table.find('tr:first-child th'));
@@ -52,9 +56,7 @@ const createMovieDataScrapper = client => () => new Promise((resolve, reject) =>
       .each((id, row) => {
         const movieData = parseMovieData(id, getRowHtml(row), headers);
 
-        if (movieData) {
-          movies.push(movieData);
-        }
+        movies.push(movieData);
       });
 
     resolve(movies);
