@@ -135,12 +135,12 @@ describe('Scrap Movies Data', () => {
   });
 
   it('should NOT have movies data', async () => {
-    const fakeClientWithEmptyData = new FakeClient(null, {})
-    const scrapMovieData = createMovieDataScrapper(fakeClientWithEmptyData)
+    const fakeClientWithEmptyData = new FakeClient(null, {});
+    const scrapMovieData = createMovieDataScrapper(fakeClientWithEmptyData);
 
-    expect.assertions(1)
+    expect.assertions(1);
     const movies = await scrapMovieData();
-    return expect(movies).toHaveLength(0)
+    return expect(movies).toHaveLength(0);
   });
 
   it('should NOT have movies data when HTMLTable is empty', async () => {
@@ -158,12 +158,12 @@ describe('Scrap Movies Data', () => {
         <tbody id="mwAao"><tr></tr></tbody>
       </table>
     </section>`
-    })
-    const scrapMovieData = createMovieDataScrapper(fakeClientWithEmptyData)
+    });
+    const scrapMovieData = createMovieDataScrapper(fakeClientWithEmptyData);
 
-    expect.assertions(1)
+    expect.assertions(1);
     const movies = await scrapMovieData();
-    return expect(movies).toHaveLength(0)
+    return expect(movies).toHaveLength(0);
   });
 
   it('should throw error', async () => {
@@ -172,9 +172,9 @@ describe('Scrap Movies Data', () => {
 
     expect.assertions(1);
     try {
-      await scrapMovieData()
-    } catch(e) {
-      expect(e).toMatch('Some Error')
+      await scrapMovieData();
+    } catch (e) {
+      expect(e).toMatch('Some Error');
     }
   });
 });

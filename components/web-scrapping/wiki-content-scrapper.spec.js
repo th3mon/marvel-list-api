@@ -52,8 +52,7 @@ describe('Scrap Wiki Content', () => {
   it('should expected movies length be equal to movies length', done => {
     wikiContentScrapper()
       .then(expectedMovies =>
-        expect(expectedMovies).toHaveLength(movies.length)
-      )
+        expect(expectedMovies).toHaveLength(movies.length))
       .then(done);
   });
 
@@ -78,8 +77,7 @@ describe('Scrap Wiki Content', () => {
   it('should all movies url scrapped', done => {
     wikiContentScrapper()
       .then(() =>
-        expect(scrapMoviePosterUrlMock).toHaveBeenCalledTimes(movies.length)
-      )
+        expect(scrapMoviePosterUrlMock).toHaveBeenCalledTimes(movies.length))
       .then(done);
   });
 
@@ -94,8 +92,7 @@ describe('Scrap Wiki Content', () => {
       .then(() =>
         expect(writeToFileMock).toBeCalledWith(
           JSON.stringify({ movies }, null, 2)
-        )
-      )
+        ))
       .then(done);
   });
 

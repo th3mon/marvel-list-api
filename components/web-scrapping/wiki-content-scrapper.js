@@ -11,8 +11,7 @@ const createWikiContentScrapper = (
         const imageUrl = await scrapMoviePosterUrl(movie.url);
 
         return Object.assign(movie, { imageUrl });
-      })
-    )
+      }))
     .then(movies => Promise.all(movies))
     .then(movies => {
       if (!_.isEmpty(movies)) {

@@ -1,4 +1,4 @@
-const fs = require('fs')
+const fs = require('fs');
 const createJsonFileWriter = require('./create-json-file-writer');
 
 jest.mock('fs');
@@ -12,8 +12,8 @@ describe('Create JSON File Writer', () => {
   });
 
   it('should create folder if it not exist', () => {
-    fs.existsSync.mockImplementation(() => true)
-    const fileWriter = createJsonFileWriter('someFile');
+    fs.existsSync.mockImplementation(() => true);
+    createJsonFileWriter('someFile');
 
     expect(fs.existsSync).toHaveBeenCalled();
   });
