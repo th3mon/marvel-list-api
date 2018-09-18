@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 function createJsonFileWriter(fileName) {
-  const dir = 'cache';
+  const dir = '.data';
 
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir);
