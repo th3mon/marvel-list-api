@@ -10,7 +10,7 @@ const createWikiContentScrapper = (
       movies.map(async movie => {
         const imageUrl = await scrapMoviePosterUrl(movie.url);
 
-        return Object.assign(movie, { imageUrl });
+        return { ...movie, imageUrl };
       }))
     .then(movies => Promise.all(movies))
     .then(movies => {

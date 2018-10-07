@@ -52,14 +52,17 @@ describe('Scrap Wiki Content', () => {
   it('should expected movies length be equal to movies length', done => {
     wikiContentScrapper()
       .then(expectedMovies =>
-        expect(expectedMovies).toHaveLength(movies.length))
+        expect(expectedMovies).toHaveLength(movies.length)
+      )
       .then(done);
   });
 
-  it('should expected the first movie be equal to the first movie', done => {
-    wikiContentScrapper()
-      .then(expectedMovies => expect(expectedMovies[0]).toEqual(movies[0]))
-      .then(done);
+  it('should expected the first movie be equal to the first movie', async () => {
+    expect.assertions(1);
+
+    const expectedMovies = await wikiContentScrapper();
+
+    expect(expectedMovies[0]).toMatchObject(movies[0]);
   });
 
   it('should use scrapMoviesData', done => {
@@ -87,13 +90,18 @@ describe('Scrap Wiki Content', () => {
       .then(done);
   });
 
-  it('should file writer call with proper data', done => {
-    wikiContentScrapper()
-      .then(() =>
-        expect(writeToFileMock).toBeCalledWith(
-          JSON.stringify({ movies }, null, 2)
-        ))
-      .then(done);
+  it('should file writer call with proper data', async () => {
+    expect.assertions(1);
+
+    const moviesWithImageUrl = movies.map(movie => ({ ...movie, imageUrl }));
+
+    await wikiContentScrapper();
+
+    expect(writeToFileMock).toBeCalledWith(
+      expect.stringContaining(
+        JSON.stringify({ movies: moviesWithImageUrl }, null, 2)
+      )
+    );
   });
 
   it('should not write to file when there is no data', done => {
