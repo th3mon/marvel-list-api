@@ -33,12 +33,12 @@ const createMovieDataScrapper = client => () => new Promise((resolve, reject) =>
       sections: featureFilmsSectionId
     }
   },
-  (err, req, res, obj) => {
-    if (err) {
-      reject(err);
+  (error, request, response, content) => {
+    if (error) {
+      reject(error);
     }
 
-    const html = obj[featureFilmsSectionId];
+    const html = content[featureFilmsSectionId];
 
     if (!html) {
       resolve([]);
