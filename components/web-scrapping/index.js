@@ -1,6 +1,6 @@
 const clients = require('restify-clients');
 const createJsonFileWriter = require('./create-json-file-writer');
-const config = require('../../config');
+const config = require('../config');
 const createMovieDataScrapper = require('./create-scrap-movies-data');
 const createMoviePosterUrlScrapper = require('./create-movie-poster-url-scrapper');
 const createWikiContentScrapper = require('./wiki-content-scrapper');

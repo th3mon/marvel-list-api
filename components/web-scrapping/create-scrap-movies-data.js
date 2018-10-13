@@ -1,5 +1,5 @@
 const cheerio = require('cheerio');
-const config = require('../../config');
+const config = require('../config');
 const parseHeaderCells = require('./parse-header-cells');
 const parseMovieData = require('./parse-movie-data');
 const isEmptyRow = require('./is-empty-row');

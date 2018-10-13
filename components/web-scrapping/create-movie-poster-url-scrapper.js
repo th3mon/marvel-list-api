@@ -1,5 +1,5 @@
 const cheerio = require('cheerio');
-const config = require('../../config');
+const config = require('../config');
 
 const createMoviePosterUrlScrapper = client => movieUrl => new Promise((resolve, reject) => {
   if (movieUrl) {
