@@ -2,12 +2,12 @@ const cheerio = require('cheerio');
 const { parseDate, isDate } = require('./date-utils');
 
 function parseCell(cell) {
-  let data = cheerio.load(cell).text();
+  // let data = cheerio.load(cell).text();
   const wikiReferencesPattern = /\[\d+\]/g;
   const newLineOrCarriageReturnPattern = /\n|\r/g;
   const twoOrMoreSpacesPattern = /\s{2,}/g;
 
-  data = data
+  const data = cell
     .replace(wikiReferencesPattern, '')
     .trim()
     .replace(newLineOrCarriageReturnPattern, '')

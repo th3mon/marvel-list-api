@@ -1,6 +1,6 @@
 const lodash = require('lodash');
 
-const parseCellHeader = cellHeader =>
+const parseHeaderCell = cellHeader =>
   lodash
     .chain(cellHeader)
     .replace(/\(s\)/, '')
@@ -9,6 +9,6 @@ const parseCellHeader = cellHeader =>
     .camelCase()
     .value();
 
-const parseHeaders = headers => headers.map(header => parseCellHeader(header));
+const parseHeaders = headers => headers.map(header => parseHeaderCell(header));
 
-module.exports = parseHeaders;
+module.exports = {parseHeaders, parseHeaderCell};
