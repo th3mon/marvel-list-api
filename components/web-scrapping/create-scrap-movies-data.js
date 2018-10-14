@@ -91,7 +91,17 @@ const scrapMoviesData = async (req, res, next) => {
     const moviesData = Array.from(table.querySelectorAll('tr'))
       .filter(row => !row.textContent.includes('Phase'))
       .map(row =>
-        Array.from(row.querySelectorAll('td, th')).map(cell => cell.textContent)
+        Array.from(row.querySelectorAll('td, th')).map(cell => {
+          let url = '';
+
+          if (cell.tagName === 'TH') {
+            const a = cell.querySelector('a');
+
+            url = a ? a.getAttribute('href') : '';
+          }
+
+          return url ? { text: cell.textContent, url } : cell.textContent;
+        })
       );
 
     return JSON.stringify(moviesData);
@@ -103,14 +113,22 @@ const scrapMoviesData = async (req, res, next) => {
   const [headers, ...data] = JSON.parse(rawData);
 
   const d = data.map(movie => {
-    const parsedMovie = movie.map((movieData, index) => {
-      const header = parseHeaderCell(headers[index]);
-      const cellData = parseCell(movieData);
+    const parsedMovie = movie
+      .map((movieData, index) => {
+        const header = parseHeaderCell(headers[index]);
+        const { url, text } = movieData;
 
-      return [header, cellData];
-    });
+        if (url) {
+          return [[header, text], ['url', url]];
+        }
 
-    return _.fromPairs(parsedMovie);
+        return [header, parseCell(movieData)];
+      });
+
+    const [[title, url], ...rest] = parsedMovie;
+    rest.push(title, url);
+
+    return _.fromPairs(rest);
   });
 
   res.end(JSON.stringify({ movies: d }));
