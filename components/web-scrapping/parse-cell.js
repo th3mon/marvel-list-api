@@ -8,6 +8,7 @@ function parseCell(cell) {
   const twoOrMoreSpacesPattern = /\s{2,}/g;
 
   const data = cell
+    .replace('and', 'and ')
     .replace(wikiReferencesPattern, '')
     .trim()
     .replace(newLineOrCarriageReturnPattern, '')
